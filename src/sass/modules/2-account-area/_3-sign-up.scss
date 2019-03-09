@@ -1,0 +1,29 @@
+.sign-up {
+	&__row {
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+	}
+
+	&__cell {
+		text-align: center;
+		width: 33.3333%;
+		height: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 2rem 0rem 2rem;
+
+		& hr {
+			width: 100%;
+			background-color: $border-input-color;
+			height: 1px;
+			border: none;
+		}
+	}
+
+	&__question {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}

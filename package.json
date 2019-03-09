@@ -4,7 +4,7 @@
   "description": "PWA social media app",
   "main": "webpack.config.js",
   "scripts": {
-    "compile:css": "node-sass src/css/style.sass dist/style.css",
+    "compile:css": "node-sass src/sass/style.scss dist/style.css -w",
     "compile:js": "webpack --mode development"
   },
   "author": "Patryk Białek",

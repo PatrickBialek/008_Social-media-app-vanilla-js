@@ -1,0 +1,50 @@
+.btn {
+
+	&--orange,
+	&--facebook,
+	&--google {
+		transition: all .2s ease-in-out;
+		color: $white;
+		text-decoration: none;
+		box-sizing: border-box;
+		padding: 12px 24px;
+		width: 100%;
+		font-size: 1.4rem;
+		font-weight: 700;
+		border-radius: 5px;
+		text-align: center;
+		border: none;
+		margin-bottom: 1rem;
+	}
+
+	&--orange {
+		background-color: $orange;
+		transition: all .2s ease-in-out;
+
+		&:hover {
+			background-color: $orange-hover;
+			cursor: pointer;
+		}
+	}
+
+	&--facebook {
+		background-color: $blue-fb;
+		transition: all .2s ease-in-out;
+
+		&:hover {
+			background-color: $blue-fb-hover;
+			cursor: pointer;
+		}
+	}
+
+	&--google {
+		background-color: $red-google;
+		transition: all .2s ease-in-out;
+
+		&:hover {
+			background-color: $red-google-hover;
+			cursor: pointer;
+		}
+
+	}
+}

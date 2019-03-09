@@ -1,72 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Share you opinions with our App!</title>
+		<link rel="stylesheet" href="dist/style.css" />
+	</head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Share you opinions with our App!</title>
-</head>
+	<body>
+		<header class="header"></header>
 
-<body>
-	<header class="header"></header>
-
-	<main class="account-area">
-
-		<div class="sign-in" id="sign-in">
-			<div class="sign-in__row">
-				<input class="text-field" type="text" placeholder="Your email..." id="sign-in-email">
-			</div>
-			<div class="sign-in__row">
-				<input class="text-field" type="password" placeholder="Your password..." id="sign-in-password">
-			</div>
-			<div class="sign-in__row">
-				<span class="sign-in__question">I have an account</span>
-			</div>
-			<div class="sign-in__row">
-				<input class="btn btn--aqua" type="submit" value="Sign in" id="sign-in-btn">
-			</div>
-		</div>
-
-		<div class="sign-up" id="sign-up">
-			<div class="sign-up" id="sign-up">
-				<div class="sign-up__row">
-					<input class="text-field" type="text" placeholder="Your email..." id="sign-up-email">
-				</div>
-				<div class="sign-up__row">
-					<input class="text-field" type="password" placeholder="Your password..." id="sign-up-password">
-				</div>
-				<div class="sign-up__row">
-					<div class="sing-up__cell">
-						<hr>
+		<main class="authorization">
+			<div class="authorization__video-bg">
+				<div class="authorization__content-box">
+					<div class="authorization__text-box">
+						<h1 class="heading-primary">Welcome to my social media portal</h1>
+						<p class="paragraph">Aliquam condimentum, dui vitae lacinia sollicitudin, est sapien bibendum mauris, ac vulputate est massa in nisi. In pellentesque vestibulum massa id interdum.</p>
 					</div>
-					<div class="sing-up__cell">
-						<span>or</span>
+					<div class="authorization__user-asction-box">
+						<!--
+
+							<div class="sign-in" id="sign-in">
+							<h2 class="heading-secondary">Sign in</h2>
+							<div class="sign-in__row">
+								<input class="text-field" type="text" placeholder="Your email..." id="sign-in-email" />
+							</div>
+							<div class="sign-in__row">
+								<input class="text-field" type="password" placeholder="Your password..." id="sign-in-password" />
+							</div>
+							<div class="sign-in__row">
+								<span class="sign-in__question">I have an account</span>
+							</div>
+							<div class="sign-in__row">
+								<input class="btn btn--aqua" type="submit" value="Sign in" id="sign-in-btn" />
+							</div>
+						</div>
+
+						-->
+
+						<div class="sign-up" id="sign-up">
+							<h2 class="heading-secondary">Sign up</h2>
+
+							<div class="sign-up__row">
+								<input class="text-field" type="text" placeholder="Your email..." id="sign-up-email" />
+							</div>
+							<div class="sign-up__row">
+								<input class="text-field" type="password" placeholder="Your password..." id="sign-up-password" />
+							</div>
+							<div class="sign-up__row">
+								<input class="btn btn--orange" type="submit" value="Sign up" id="sign-up-btn" />
+							</div>
+
+							<div class="sign-up__row">
+								<div class="sign-up__cell">
+									<hr />
+								</div>
+								<div class="sign-up__cell">
+									<span>or</span>
+								</div>
+								<div class="sign-up__cell">
+									<hr />
+								</div>
+							</div>
+
+							<div class="sign-up__row">
+								<a href="#" class="btn btn--facebook" id="continue-with-facebook">
+									<i class="fa fa-facebook visible-xs"></i>
+									<span class="hidden-xs">Continue with Facebook</span>
+								</a>
+							</div>
+							<div class="sign-up__row">
+								<a href="#" class="btn btn--google" id="continue-with-google">
+									<i class="fa fa-google-plus visible-xs"></i>
+									<span class="hidden-xs">Continue with Google</span>
+								</a>
+							</div>
+
+							<div class="sign-up__row">
+								<span class="sign-up__question">I have an account</span>
+							</div>
+						</div>
 					</div>
-					<div class="sing-up__cell">
-						<hr>
-					</div>
-				</div>
-				<div class="sign-up__row">
-					<input class="btn btn--aqua" type="submit" value="Sign up" id="sign-up-btn">
-				</div>
-				<div class="sign-up__row">
-					<span class="sign-in__question">I don't have an account</span>
 				</div>
 			</div>
-		</div>
-	</main>
+		</main>
 
-	<main class="wall">
-		<div class="wall__add-post"></div>
-		<div class="wall__content-box"></div>
-	</main>
+		<!--
 
-	<main class="settings">
-		<div class="settings__content-box"></div>
-	</main>
+		<main class="wall">
+			<div class="wall__add-post"></div>
+			<div class="wall__content-box"></div>
+		</main>
 
-	<footer class="footer"></footer>
-</body>
+		<main class="settings">
+			<div class="settings__content-box"></div>
+		</main>
 
+		-->
+
+		<footer class="footer"></footer>
+	</body>
 </html>
