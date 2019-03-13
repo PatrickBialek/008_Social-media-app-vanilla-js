@@ -77,7 +77,9 @@ class HTML {
 		`;
 	}
 
-
+	resetPasswordTemplate() {
+		const templateHTML = ``;
+	}
 
 	addPostTemplate() {
 		const templateHTML = ``;
