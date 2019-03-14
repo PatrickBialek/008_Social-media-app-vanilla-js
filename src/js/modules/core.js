@@ -31,7 +31,7 @@ class CORE {
 			if (user) {
 
 			} else {
-				html.notSignedUserTemplate(appBody);
+				html.notSignedUserTemplate();
 				html.signInTemplate();
 			}
 		});

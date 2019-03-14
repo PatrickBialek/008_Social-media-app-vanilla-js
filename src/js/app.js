@@ -10,8 +10,7 @@ const html = new HTML(),
 	core = new CORE(),
 	switchToSignUp = document.querySelector('#switch-to-sign-up'),
 	switchToSignIn = document.querySelector('#switch-to-sign-in'),
-	appBody = document.querySelector('#app-body'),
-	userAuthBox = document.querySelector('#user-auth-box');
+	appBody = document.querySelector('#app-body');
 
 core.initializeFirebase();
 core.checkIfUserIsLogIn();
@@ -19,6 +18,5 @@ core.checkIfUserIsLogIn();
 export {
 	html,
 	core,
-	appBody,
-	userAuthBox
+	appBody
 };
