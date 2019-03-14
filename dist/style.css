@@ -274,3 +274,8 @@ body {
 .sign-up__question {
   text-decoration: underline;
   cursor: pointer; }
+
+.reset-password__row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row; }
