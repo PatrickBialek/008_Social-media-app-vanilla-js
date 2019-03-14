@@ -1,5 +1,6 @@
 import {
 	html,
+	core,
 	appBody
 } from "../app";
 
@@ -64,6 +65,9 @@ class HTML {
 
 		const switchToResetPassowrd = document.querySelector('#switch-to-reset-password');
 		switchToResetPassowrd.addEventListener('click', html.resetPasswordTemplate);
+
+		const signInBtn = document.querySelector('#sign-in-btn');
+		signInBtn.addEventListener('click', core.signIn);
 	}
 
 	signUpTemplate() {
@@ -73,6 +77,12 @@ class HTML {
 			<div class="sign-up" id="sign-up">
 				<h2 class="heading-secondary">Sign up</h2>
 
+				<div class="sign-up__row">
+					<input class="text-field" type="text" placeholder="First name.." id="sign-up-first-name" />
+				</div>
+				<div class="sign-up__row">
+					<input class="text-field" type="text" placeholder="Last name..." id="sign-up-last-name" />
+				</div>
 				<div class="sign-up__row">
 					<input class="text-field" type="text" placeholder="Your email..." id="sign-up-email" />
 				</div>
@@ -117,6 +127,19 @@ class HTML {
 
 		const switchToSignIn = document.querySelector('#switch-to-sign-in');
 		switchToSignIn.addEventListener('click', html.signInTemplate);
+
+		const signUpBtn = document.querySelector('#sign-up-btn');
+		signUpBtn.addEventListener('click', core.signUp);
+
+		const continueWithFacebookBtn = document.querySelector('#continue-with-facebook');
+		continueWithFacebookBtn.addEventListener('click', core.continueWithFacebook);
+
+		const continueWithGoogleBtn = document.querySelector('#continue-with-google');
+		continueWithGoogleBtn.addEventListener('click', core.continueWithGoogle);
+	}
+
+	signOutError() {
+
 	}
 
 	resetPasswordTemplate() {
@@ -140,6 +163,13 @@ class HTML {
 
 		const switchToSignIn = document.querySelector('#switch-to-log-in-area');
 		switchToSignIn.addEventListener('click', html.signInTemplate);
+
+		const resetUserPasswordBtn = document.querySelector('#reset-password-btn');
+		resetUserPasswordBtn.addEventListener('click', core.resetUserPassword);
+	}
+
+	cleanErrors() {
+
 	}
 
 	addPostTemplate() {

@@ -10,6 +10,9 @@ import {
 	html,
 	appBody
 } from '../app';
+import {
+	error
+} from "util";
 
 class CORE {
 	initializeFirebase() {
@@ -38,11 +41,42 @@ class CORE {
 	}
 
 	signIn() {
+		html.cleanErrors();
+
+		const userEmail = document.querySelector('#sign-up-first-name').value,
+			userPassword = document.querySelector('#sign-up-first-name').value,
+			re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+			isEmailCorrect = re.test(userEmail);
+
 
 	}
 
 	signUp() {
+		const userFirstName = document.querySelector('#sign-up-first-name').value,
+			userLastName = document.querySelector('#sign-up-last-name').value,
+			userEmail = document.querySelector('#sign-up-email').value,
+			userPassword = document.querySelector('#sign-up-password').value,
+			re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+			isEmailCorrect = re.test(userEmail),
+			errors = [];
 
+		if (userFirstName != "" && userLastName != "" && userPassword != "" && isEmailCorrect != false) {
+			firebase.auth()
+				.createUserWithEmailAndPassword(userEmail, userPassword)
+				.then(() => {
+					firebase.auth()
+						.currentUser.updateProfile({
+							userFirstName: userFirstName,
+							userLastName: userLastName
+						})
+				})
+				.catch(error => {
+					console.log(error.message);
+					html.signOutError(error.message);
+				})
+		} else {
+			html.signOutError();
+		}
 	}
 
 	resetUserPassword() {
