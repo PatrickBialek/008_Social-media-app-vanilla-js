@@ -1,14 +1,35 @@
 import {
-	html
+	html,
+	userAuthBox
 } from "../app";
 
 class HTML {
-	notSignedUserTemplate() {
+	notSignedUserTemplate(appBody) {
 		const templateHTML = `
 			<header class="header"></header>
-			<main class="account-area" id="account-area-not-signed-up"></main>
+
+			<main class="authorization">
+
+				<div class="authorization__bg-video-box">
+					<video class="authorization__bg-video" autoplay muted loop>
+						<source src="src/videos/people-bg-video.mp4" type="video/mp4" />
+					</video>
+				</div>
+		
+				<div class="authorization__content-box">
+					<div class="authorization__text-box">
+						<h1 class="heading-primary margin-bottom-small">Welcome to my social media portal</h1>
+						<p class="paragraph">Aliquam condimentum, dui vitae lacinia sollicitudin, est sapien bibendum mauris, ac vulputate est massa in nisi. In pellentesque vestibulum massa id interdum.</p>
+					</div>
+					<div class="authorization__user-asction-box" id="user-auth-box">
+				</div>
+				
+			</main>
+
 			<footer class="footer"></footer>
 		`;
+
+		appBody.innerHTML = templateHTML;
 	}
 
 	signInTemplate() {

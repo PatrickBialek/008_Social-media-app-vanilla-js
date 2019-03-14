@@ -9,12 +9,16 @@ import {
 const html = new HTML(),
 	core = new CORE(),
 	switchToSignUp = document.querySelector('#switch-to-sign-up'),
-	switchToSignIn = document.querySelector('#switch-to-sign-in');
+	switchToSignIn = document.querySelector('#switch-to-sign-in'),
+	appBody = document.querySelector('#app-body'),
+	userAuthBox = document.querySelector('#user-auth-box');
 
-console.log(html);
-console.log(core);
+core.initializeFirebase();
+core.checkIfUserIsLogIn();
 
 export {
 	html,
-	core
+	core,
+	appBody,
+	userAuthBox
 };
