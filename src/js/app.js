@@ -1,3 +1,5 @@
+import './independent-scripts/animations';
+
 import {
 	HTML
 } from "./modules/html";

@@ -205,18 +205,21 @@ class HTML {
 	// Pages elements tempalates
 	headerTemplete() {
 		const header = document.querySelector('#app-header');
+		let icon = 'src/images/user-icon.png';
+
+
 
 		const templateHTML = `
 		<div class="header__container">
 			<div class="header__logo-box">
-				<img src="#" alt="Social media logo">
+				<img src="src/images/app-icon.png" alt="Social media logo">
 			</div>
 			<div class="header__search-box">
 				<input type="text" placeholder="Search..">
 			</div>
 			<div class="header__user-icon-box">
 				<figure class="header__user-picture-box">
-					<img class="header__user-picture" src="#" alt="User profile image">
+					<img src="${icon}" alt="User profile image">
 				</figure>
 				<div class="header__nav-box">
 					<nav class="nav">
@@ -242,7 +245,7 @@ class HTML {
 			<section class="add-post">
 				<div class="add-post__content">
 					<textarea class="add-post__text-area" placeholder="Your post..."></textarea>
-					<input class="add-post-btn" type="sumbit" value="Post">
+					<input class="add-post__btn" type="submit" value="Post">
 				</div>
 			</section>
 		`;
