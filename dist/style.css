@@ -211,7 +211,8 @@ body.add-error .error-box {
   width: 100%;
   background-color: #ff5e3a;
   display: flex;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  z-index: 50; }
 
 .header__container {
   display: flex;
@@ -223,51 +224,49 @@ body.add-error .error-box {
   align-items: center; }
 
 .header.nav-active .header__nav-box {
-  display: block;
-  transform: translateY(0); }
+  transform: translateX(0); }
 
 .header__logo-box img {
   width: 30px; }
 
-.header__search-box input[type=text] {
+.header__search-box input[type="text"] {
   border-radius: 5px;
   border: none;
   padding: 6px 12px;
   outline: none;
   font-size: 1.55rem;
-  -webkit-opacity: .85;
+  -webkit-opacity: 0.85;
   color: #515365; }
-  .header__search-box input[type=text]::placeholder {
+  .header__search-box input[type="text"]::placeholder {
     font-size: 1.45rem; }
 
 .header__user-picture-box img {
   width: 40px;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: border .35s ease-in-out;
+  transition: border 0.35s ease-in-out;
   border-radius: 50%; }
   .header__user-picture-box img:hover {
     border: 2px solid #fff; }
 
 .header__nav-box {
-  display: none;
-  transform: translateY(-100%);
-  z-index: -1;
   margin-top: 15px;
+  height: calc(100vh - 96px);
   position: absolute;
   width: 120px;
   right: 0;
   background-color: #2A7DA1;
   padding: 8px 16px;
   border-bottom-left-radius: 5px;
-  transition: transform 4s ease-in-out; }
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out; }
   .header__nav-box li {
     padding: 2px 0px; }
   .header__nav-box a {
     color: #efefef;
     text-decoration: none;
-    opacity: .9;
-    transition: opacity .3s ease-in-out; }
+    opacity: 0.9;
+    transition: opacity 0.3s ease-in-out; }
     .header__nav-box a:hover {
       opacity: 1; }
     .header__nav-box a::after {
@@ -278,10 +277,26 @@ body.add-error .error-box {
       margin-top: 2px;
       width: 1px;
       opacity: 0;
-      transition: opacity, width .3s ease-in-out; }
+      transition: opacity, width 0.3s ease-in-out; }
     .header__nav-box a:hover::after {
-      opacity: .65;
+      opacity: 0.65;
       width: 100%; }
+  .header__nav-box input[type="submit"] {
+    background-color: #fff;
+    color: #2A7DA1;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 100px;
+    position: absolute;
+    bottom: 1.5rem;
+    transition: background-color 0.2s ease-out; }
+    .header__nav-box input[type="submit"]:hover {
+      cursor: pointer;
+      background-color: #e4f7ff; }
 
 .authorization {
   background-color: #ff5e3a;

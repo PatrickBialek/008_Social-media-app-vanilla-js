@@ -222,14 +222,15 @@ class HTML {
 					<img src="${icon}" alt="User profile image">
 				</figure>
 				<div class="header__nav-box">
-					<nav class="nav">
+					<nav>
 						<ul>
-							<li><a href="#" class="nav__item">Main Page</a></li>
-							<li><a href="#" class="nav__item">My account</a></li>
-							<li><a href="#" class="nav__item">Your Friends</a></li>
-							<li><a href="#" class="nav__item">Settings</a></li>
+							<li><a href="#">Main Page</a></li>
+							<li><a href="#">My account</a></li>
+							<li><a href="#">Your Friends</a></li>
+							<li><a href="#">Settings</a></li>
 						</ul>
 					</nav>
+					<input type="submit" value="Log out" id="sign-out-btn">
 				</div>
 				</div>
 			</div>
@@ -237,6 +238,9 @@ class HTML {
 		`;
 
 		header.innerHTML = templateHTML;
+
+		const signOutBtn = document.querySelector('#sign-out-btn');
+		signOutBtn.addEventListener('click', core.signOut);
 	}
 
 	addPostTemplate() {

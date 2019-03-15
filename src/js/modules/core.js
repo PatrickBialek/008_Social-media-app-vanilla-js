@@ -175,7 +175,18 @@ class CORE {
 			});
 	}
 
-	signOut() {}
+	signOut() {
+		firebase
+			.auth()
+			.signOut()
+			.then(() => {
+				html.notSignedUserTemplate();
+				html.signInTemplate();
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
 }
 
 export {

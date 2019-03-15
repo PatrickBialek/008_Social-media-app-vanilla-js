@@ -7,6 +7,7 @@ setTimeout(() => {
 
 			if (header.classList.contains('nav-active')) {
 				header.classList.remove('nav-active');
+
 			} else {
 				header.classList.add('nav-active');
 			}
