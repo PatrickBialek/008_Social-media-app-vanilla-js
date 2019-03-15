@@ -1,0 +1,13 @@
+body.add-error .error-box {
+	display: block;
+}
+
+.error-box {
+	display: none;
+	background-color: $red-error;
+	color: $white;
+	border-radius: 5px;
+	padding: 10px 20px;
+	text-align: center;
+	margin-top: 2rem;
+}

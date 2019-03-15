@@ -194,6 +194,18 @@ body {
   margin-bottom: 1rem;
   font-size: 1.35rem; }
 
+body.add-error .error-box {
+  display: block; }
+
+.error-box {
+  display: none;
+  background-color: #FF0000;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 2rem; }
+
 .authorization {
   background-color: #ff5e3a;
   padding: 2rem 1rem;

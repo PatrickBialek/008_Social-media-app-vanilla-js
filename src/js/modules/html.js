@@ -56,6 +56,7 @@ class HTML {
 					<span class="sign-up__question" id="switch-to-reset-password">I don't remember a password</span>
 				</div>
 			</div>
+			<div class="error-box" id="error-box"></div>
 		`;
 
 		userAuthBox.innerHTML = templateHTML;
@@ -68,6 +69,8 @@ class HTML {
 
 		const signInBtn = document.querySelector('#sign-in-btn');
 		signInBtn.addEventListener('click', core.signIn);
+
+		html.cleanErrors();
 	}
 
 	signUpTemplate() {
@@ -120,6 +123,7 @@ class HTML {
 					<div class="sign-up__row">
 						<span class="sign-up__question" id="switch-to-sign-in">I have an account</span>
 					</div>
+					<div class="error-box" id="error-box"></div>
 			</div>
 		`;
 
@@ -136,17 +140,15 @@ class HTML {
 
 		const continueWithGoogleBtn = document.querySelector('#continue-with-google');
 		continueWithGoogleBtn.addEventListener('click', core.continueWithGoogle);
-	}
 
-	signOutError() {
-
+		html.cleanErrors();
 	}
 
 	resetPasswordTemplate() {
 		const userAuthBox = document.querySelector('#user-auth-box');
 
 		const templateHTML = `
-			<div class="reset-password">
+			<div class="reset-password" id="reset-password-template">
 				<div class="sign-up__row">
 					<input class="text-field" type="text" placeholder="Your mail-address..." id="reset-password-mail" />
 				</div>
@@ -156,6 +158,7 @@ class HTML {
 				<div class="sign-up__row">
 					<span class="sign-up__question" id="switch-to-log-in-area">Back to sign in area</span>
 				</div>
+				<div class="error-box" id="error-box"></div>
 			</div>
 		`;
 
@@ -166,10 +169,40 @@ class HTML {
 
 		const resetUserPasswordBtn = document.querySelector('#reset-password-btn');
 		resetUserPasswordBtn.addEventListener('click', core.resetUserPassword);
+
+		html.cleanErrors();
+	}
+
+	hideResetUserPassword() {
+		const resetPasswordTemplateHTML = document.querySelector('#reset-password-template');
+		resetPasswordTemplateHTML.innerHTML = "";
 	}
 
 	cleanErrors() {
+		const errorTemplateHTML = document.querySelector('#error-box');
 
+		document.body.classList.remove('add-error');
+		errorTemplateHTML.innerHTML = "";
+	}
+
+	displayError(errors) {
+		const errorTemplateHTML = document.querySelector('#error-box');
+
+		document.body.classList.add('add-error');
+		errorTemplateHTML.innerHTML = errors;
+	}
+
+	cleanSuccess() {
+		document.body.classList.remove('add-error');
+		errorTemplateHTML.innerHTML = "";
+	}
+
+	displaySuccess(success) {
+
+	}
+
+	userSingedInTemplete() {
+		console.log('test');
 	}
 
 	addPostTemplate() {

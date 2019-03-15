@@ -9,7 +9,7 @@ import {
 	core,
 	html,
 	appBody
-} from '../app';
+} from "../app";
 import {
 	error
 } from "util";
@@ -30,10 +30,7 @@ class CORE {
 
 	checkIfUserIsLogIn() {
 		firebase.auth().onAuthStateChanged(user => {
-
-			if (user) {
-
-			} else {
+			if (user) {} else {
 				html.notSignedUserTemplate();
 				html.signInTemplate();
 			}
@@ -41,59 +38,82 @@ class CORE {
 	}
 
 	signIn() {
-		html.cleanErrors();
-
-		const userEmail = document.querySelector('#sign-up-first-name').value,
-			userPassword = document.querySelector('#sign-up-first-name').value,
+		const userEmail = document.querySelector("#sign-in-email").value,
+			userPassword = document.querySelector("#sign-in-password").value,
 			re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 			isEmailCorrect = re.test(userEmail);
 
-
+		if (isEmailCorrect) {
+			firebase
+				.auth()
+				.signInWithEmailAndPassword(userEmail, userPassword)
+				.then(() => {
+					html.userSingedInTemplete();
+				})
+				.catch(error => {
+					console.log(error.message);
+					html.displayError(error.message);
+				});
+		} else {
+			const error = "Email or password field is empty";
+			html.displayError(error);
+		}
 	}
 
 	signUp() {
-		const userFirstName = document.querySelector('#sign-up-first-name').value,
-			userLastName = document.querySelector('#sign-up-last-name').value,
-			userEmail = document.querySelector('#sign-up-email').value,
-			userPassword = document.querySelector('#sign-up-password').value,
+		const userFirstName = document.querySelector("#sign-up-first-name").value,
+			userLastName = document.querySelector("#sign-up-last-name").value,
+			userEmail = document.querySelector("#sign-up-email").value,
+			userPassword = document.querySelector("#sign-up-password").value,
 			re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 			isEmailCorrect = re.test(userEmail),
 			errors = [];
 
 		if (userFirstName != "" && userLastName != "" && userPassword != "" && isEmailCorrect != false) {
-			firebase.auth()
+			firebase
+				.auth()
 				.createUserWithEmailAndPassword(userEmail, userPassword)
 				.then(() => {
-					firebase.auth()
-						.currentUser.updateProfile({
-							userFirstName: userFirstName,
-							userLastName: userLastName
-						})
+					firebase.auth().currentUser.updateProfile({
+						userFirstName: userFirstName,
+						userLastName: userLastName
+					});
 				})
 				.catch(error => {
 					console.log(error.message);
-					html.signOutError(error.message);
-				})
+					html.displayError(error.message);
+				});
 		} else {
-			html.signOutError();
+			const error = "You have to fill all fields";
+			html.displayError(error);
 		}
 	}
 
 	resetUserPassword() {
+		const userEmail = document.querySelector("#reset-password-mail").value,
+			re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+			isEmailCorrect = re.test(userEmail);
 
+		if (isEmailCorrect) {
+			firebase
+				.auth()
+				.sendPasswordResetEmail(userEmail)
+				.then({})
+				.catch(error => {
+					console.log(error.message);
+					html.displayError(error.message);
+				});
+		} else {
+			const error = "Email foramt isn't correct";
+			html.displayError(error);
+		}
 	}
 
-	continueWithFacebook() {
+	continueWithFacebook() {}
 
-	}
+	continueWithGoogle() {}
 
-	continueWithGoogle() {
-
-	}
-
-	signOut() {
-
-	}
+	signOut() {}
 }
 
 export {
