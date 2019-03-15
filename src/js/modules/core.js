@@ -30,7 +30,9 @@ class CORE {
 
 	checkIfUserIsLogIn() {
 		firebase.auth().onAuthStateChanged(user => {
-			if (user) {} else {
+			if (user) {
+				html.userSingedInTemplete();
+			} else {
 				html.notSignedUserTemplate();
 				html.signInTemplate();
 			}
@@ -78,6 +80,9 @@ class CORE {
 						userFirstName: userFirstName,
 						userLastName: userLastName
 					});
+				})
+				.then(() => {
+					html.userSingedInTemplete();
 				})
 				.catch(error => {
 					console.log(error.message);
