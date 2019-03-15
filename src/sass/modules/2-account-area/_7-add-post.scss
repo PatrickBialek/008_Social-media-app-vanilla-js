@@ -39,5 +39,10 @@
 			background-color: $orange-hover;
 			cursor: pointer;
 		}
+
+		&:disabled {
+			opacity: .7;
+			cursor: default;
+		}
 	}
 }

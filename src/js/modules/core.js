@@ -31,7 +31,8 @@ class CORE {
 	checkIfUserIsLogIn() {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
-				html.userSingedInTemplete();
+				const userName = user.displayName;
+				html.userSingedInTemplete(userName);
 				html.mainPageTemplate();
 			} else {
 				html.notSignedUserTemplate();
@@ -65,22 +66,20 @@ class CORE {
 	}
 
 	signUp() {
-		const userFirstName = document.querySelector("#sign-up-first-name").value,
-			userLastName = document.querySelector("#sign-up-last-name").value,
+		const userName = document.querySelector("#sign-up-name").value,
 			userEmail = document.querySelector("#sign-up-email").value,
 			userPassword = document.querySelector("#sign-up-password").value,
 			re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 			isEmailCorrect = re.test(userEmail),
 			errors = [];
 
-		if (userFirstName != "" && userLastName != "" && userPassword != "" && isEmailCorrect != false) {
+		if (userName != "" && userPassword != "" && isEmailCorrect != false) {
 			firebase
 				.auth()
 				.createUserWithEmailAndPassword(userEmail, userPassword)
 				.then(() => {
 					firebase.auth().currentUser.updateProfile({
-						userFirstName: userFirstName,
-						userLastName: userLastName
+						displayName: userName
 					});
 				})
 				.then(() => {
@@ -186,6 +185,37 @@ class CORE {
 			.catch(error => {
 				console.log(error);
 			});
+	}
+
+	addPostToDatabase() {
+		const postText = document.querySelector('.add-post-textarea').value;
+
+		if (postText != "") {
+			const user = firebase.auth().currentUser,
+				userEmail = user.email,
+				userName = user.displayName,
+				id = Date.now() + Math.floor(Math.random() * 100),
+				db = firebase.database().ref("posts/" + id);
+
+			const post = {
+				userEmail: userEmail,
+				userName: userName,
+				id: id,
+				published: false,
+				likes: [],
+				responses: []
+			};
+
+			db.set(post);
+			html.addPostResetField();
+			html.addPostOnWall();
+		} else {
+			console.log('fill all fields!');
+		}
+	}
+
+	getPostFromDatabase() {
+
 	}
 }
 

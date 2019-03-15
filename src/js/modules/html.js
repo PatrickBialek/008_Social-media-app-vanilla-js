@@ -82,10 +82,7 @@ class HTML {
 				<h2 class="heading-secondary">Sign up</h2>
 
 				<div class="sign-up__row">
-					<input class="text-field" type="text" placeholder="First name.." id="sign-up-first-name" />
-				</div>
-				<div class="sign-up__row">
-					<input class="text-field" type="text" placeholder="Last name..." id="sign-up-last-name" />
+					<input class="text-field" type="text" placeholder="First name.." id="sign-up-name" />
 				</div>
 				<div class="sign-up__row">
 					<input class="text-field" type="text" placeholder="Your email..." id="sign-up-email" />
@@ -203,11 +200,9 @@ class HTML {
 	}
 
 	// Pages elements tempalates
-	headerTemplete() {
+	headerTemplete(userName) {
 		const header = document.querySelector('#app-header');
 		let icon = 'src/images/user-icon.png';
-
-
 
 		const templateHTML = `
 		<div class="header__container">
@@ -222,6 +217,7 @@ class HTML {
 					<img src="${icon}" alt="User profile image">
 				</figure>
 				<div class="header__nav-box">
+					<h2>${userName}</h2>
 					<nav>
 						<ul>
 							<li><a href="#">Main Page</a></li>
@@ -248,13 +244,21 @@ class HTML {
 		const templateHTML = `
 			<section class="add-post">
 				<div class="add-post__content">
-					<textarea class="add-post__text-area" placeholder="Your post..."></textarea>
-					<input class="add-post__btn" type="submit" value="Post">
+					<textarea class="add-post__text-area" id="add-post-textarea" placeholder="Your post..."></textarea>
+					<input class="add-post__btn" id="add-post-btn" type="submit" value="Post">
 				</div>
+				<div class="error-box" id="error-box"></div>
 			</section>
 		`;
 
 		main.innerHTML += templateHTML;
+
+		const addPostBtn = document.querySelector('#add-post-btn');
+		addPostBtn.addEventListener('click', core.addPostToDatabase);
+	}
+
+	addPostOnWall() {
+
 	}
 
 	wallTemplate() {
@@ -272,7 +276,7 @@ class HTML {
 
 	}
 
-	userSingedInTemplete() {
+	userSingedInTemplete(userName) {
 		const bodyTemplate = document.querySelector('#app-body');
 		const templateHTML = `
 			<header class="header" id="app-header"></header>
@@ -280,12 +284,11 @@ class HTML {
 		`;
 
 		bodyTemplate.innerHTML = templateHTML;
-		html.headerTemplete();
+		html.headerTemplete(userName);
 	}
 
 	// Pages Templates
 	mainPageTemplate() {
-		console.log('main page template function');
 		html.addPostTemplate();
 		html.wallTemplate();
 	}
