@@ -32,6 +32,7 @@ class CORE {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				html.userSingedInTemplete();
+				html.mainPageTemplate();
 			} else {
 				html.notSignedUserTemplate();
 				html.signInTemplate();
@@ -51,6 +52,7 @@ class CORE {
 				.signInWithEmailAndPassword(userEmail, userPassword)
 				.then(() => {
 					html.userSingedInTemplete();
+					html.mainPageTemplate();
 				})
 				.catch(error => {
 					console.log(error.message);

@@ -5,6 +5,7 @@ import {
 } from "../app";
 
 class HTML {
+	// Auth page templates
 	notSignedUserTemplate() {
 		const templateHTML = `
 			<header class="header"></header>
@@ -201,23 +202,29 @@ class HTML {
 
 	}
 
+	// Pages elements tempalates
 	headerTemplete() {
 		const header = document.querySelector('#app-header');
 
 		const templateHTML = `
 		<div class="header__container">
-			<div class="header__logo-box"></div>
+			<div class="header__logo-box">
+				<img src="#" alt="Social media logo">
+			</div>
+			<div class="header__search-box">
+				<input type="text" placeholder="Search..">
+			</div>
 			<div class="header__user-icon-box">
 				<figure class="header__user-picture-box">
 					<img class="header__user-picture" src="#" alt="User profile image">
 				</figure>
-				<div class="header__nav-box>
+				<div class="header__nav-box">
 					<nav class="nav">
 						<ul>
-							<li><a href="#" class="nav__item">Wall</a></li>
+							<li><a href="#" class="nav__item">Main Page</a></li>
 							<li><a href="#" class="nav__item">My account</a></li>
+							<li><a href="#" class="nav__item">Your Friends</a></li>
 							<li><a href="#" class="nav__item">Settings</a></li>
-							<li><a href="#" class="nav__item">Friends</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -231,7 +238,6 @@ class HTML {
 
 	addPostTemplate() {
 		const main = document.querySelector('#app-main');
-
 		const templateHTML = `
 			<section class="add-post">
 				<div class="add-post__content">
@@ -244,12 +250,15 @@ class HTML {
 		main.innerHTML += templateHTML;
 	}
 
-	yourFriendsPostsTemplate() {
+	wallTemplate() {
+		const main = document.querySelector('#app-main');
+		const templateHTML = `
+			<section class="posts">
+				<div class="posts__content"></div>
+			</section>
+		`;
 
-	}
-
-	yourFriendsTemplate() {
-
+		main.innerHTML += templateHTML;
 	}
 
 	settingsTemplate() {
@@ -258,13 +267,20 @@ class HTML {
 
 	userSingedInTemplete() {
 		const bodyTemplate = document.querySelector('#app-body');
-
 		const templateHTML = `
 			<header class="header" id="app-header"></header>
 			<main class="main" id="app-main"></main>
 		`;
 
 		bodyTemplate.innerHTML = templateHTML;
+		html.headerTemplete();
+	}
+
+	// Pages Templates
+	mainPageTemplate() {
+		console.log('main page template function');
+		html.addPostTemplate();
+		html.wallTemplate();
 	}
 
 	errorTemplate() {
