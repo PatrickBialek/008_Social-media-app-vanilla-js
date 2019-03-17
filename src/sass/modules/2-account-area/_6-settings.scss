@@ -1,0 +1,48 @@
+.settings {
+	flex-grow: 1;
+	max-width: 250px;
+	border: 1px solid $border-color;
+	border-radius: 5px;
+	background-color: $white;
+
+	&,
+	&__row {
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+	}
+
+	&__row {
+		width: 100%;
+		padding: 20px 25px 20px;
+		border-bottom: 1px solid $border-color;
+		transition: background-color .3s ease-in-out;
+
+		&:not(:first-child):not(:last-child):hover {
+			background-color: $orange;
+			cursor: pointer;
+
+			& .settings__option {
+				color: $white;
+				opacity: .95;
+			}
+		}
+
+		& h2 {
+			color: $black;
+			font-weight: 700;
+		}
+	}
+
+	&__option {
+		transition: color .3s ease-in-out;
+	}
+
+	& input[type=submit].btn--orange {
+		max-height: 40px;
+		max-width: 120px;
+		margin-left: 0;
+		margin-bottom: 0;
+		text-align: center;
+	}
+}

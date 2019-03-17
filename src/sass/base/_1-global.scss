@@ -3,9 +3,19 @@ html {
 }
 
 body {
-	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 	font-size: 1.6rem;
 	line-height: 1.5;
 	color: #8d97ad;
 	font-size: 300;
+	background-color: #edf2f6;
+}
+
+#app-main {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	padding: 5rem 1rem;
+	font-size: 1.5rem;
+	align-items: start;
 }

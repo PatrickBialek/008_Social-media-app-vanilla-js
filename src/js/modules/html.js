@@ -213,67 +213,105 @@ class HTML {
 				<input type="text" placeholder="Search..">
 			</div>
 			<div class="header__user-icon-box">
-				<figure class="header__user-picture-box">
+				<figure class="header__user-picture-box" id="header-user-avatar">
 					<img src="${icon}" alt="User profile image">
 				</figure>
-				<div class="header__nav-box">
-					<h2>${userName}</h2>
-					<nav>
-						<ul>
-							<li><a href="#">Main Page</a></li>
-							<li><a href="#">My account</a></li>
-							<li><a href="#">Your Friends</a></li>
-							<li><a href="#">Settings</a></li>
-						</ul>
-					</nav>
-					<input type="submit" value="Log out" id="sign-out-btn">
-				</div>
-				</div>
 			</div>
 		</div>
 		`;
 
 		header.innerHTML = templateHTML;
 
-		const signOutBtn = document.querySelector('#sign-out-btn');
-		signOutBtn.addEventListener('click', core.signOut);
+		const avatar = document.querySelector('#header-user-avatar');
+		avatar.addEventListener('click', html.mainPageTemplate);
+	}
+
+	profileIntroTemplete() {
+		const asideProfilIntro = document.querySelector('#aside-profile-intro');
+		const templateHTML = `
+			<div class="profile-intro__row">
+				<h2>Profil intro</h2>
+			</div>
+			<div class="profile-intro__row">
+				<span class="profile-intro__sub-titile">About me:</span>
+				<p>My name is Patryk. I'm 25 years old and I'm enyoing of traveling and sighseeing. I love hitch-hiking, meet new people and get to know new facts about our planet!</p>
+			</div>
+			<div class="profile-intro__row">
+				<span class="profile-intro__sub-titile">Visited places:</span>
+				<p>Poland, Hungary, Cyprus, Turkey, Lanzarote, Teneryfa, Kosovo, Serbia, Montenegro, Croatia, Albania, Slovakia, Kazakhstan, Ukraine, Germany, Italy, Israel</p>
+			</div>
+			<div class="profile-intro__row">
+				<span class="profile-intro__sub-titile">Want to see:</span>
+				<p>Argentina, Columbia, UK, Uzbekistan, Iran, Mongolia</p>
+			</div>
+		`;
+
+		asideProfilIntro.innerHTML = templateHTML;
 	}
 
 	addPostTemplate() {
-		const main = document.querySelector('#app-main');
+		const addPostContainer = document.querySelector('#add-post-container');
 		const templateHTML = `
-			<section class="add-post">
-				<div class="add-post__content">
-					<textarea class="add-post__text-area" id="add-post-textarea" placeholder="Your post..."></textarea>
-					<input class="add-post__btn" id="add-post-btn" type="submit" value="Post">
-				</div>
-				<div class="error-box" id="error-box"></div>
-			</section>
+			<div class="add-post__content">
+				<textarea class="add-post__text-area" id="add-post-textarea" placeholder="Your post..."></textarea>
+				<input class="btn btn--orange" id="add-post-btn" type="submit" value="Post">
+			</div>
+			<div class="error-box"></div>
 		`;
 
-		main.innerHTML += templateHTML;
+		addPostContainer.innerHTML += templateHTML;
 
 		const addPostBtn = document.querySelector('#add-post-btn');
 		addPostBtn.addEventListener('click', core.addPostToDatabase);
 	}
 
-	addPostOnWall() {
-
-	}
-
 	wallTemplate() {
-		const main = document.querySelector('#app-main');
+		const postsContainer = document.querySelector('#posts-container');
 		const templateHTML = `
-			<section class="posts">
-				<div class="posts__content"></div>
-			</section>
+			<article class="posts__single-post">
+				<div class="posts__info">
+					<div class="posts__avatar">
+						<img src="src/images/user-icon.png" alt="author">
+					</div>
+					<div class="posts__author">
+						<h2>Patryk Białek</h2>
+						<time datetime="2008-02-14 20:00">5 hours ago</time>
+					</div>
+				</div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at iaculis elit, vel pulvinar felis. Morbi vestibulum suscipit erat, nec feugiat urna ultrices vitae. Donec vitae pharetra erat, sit amet congue leo. Vivamus mattis urna arcu, at maximus enim imperdiet ut.</p>				
+			</article>
 		`;
 
-		main.innerHTML += templateHTML;
+		postsContainer.innerHTML += templateHTML;
 	}
 
 	settingsTemplate() {
+		const settingsContainer = document.querySelector('#profile-settings');
+		const templateHTML = `
+			<div class="settings__row">
+				<h2>Settings</h2>
+			</div>
+			<div class="settings__row">
+				<span class="settings__option">Home Page</span>
+			</div>
+			<div class="settings__row">
+				<span class="settings__option">Your Profile</span>
+			</div>
+			<div class="settings__row">
+				<span class="settings__option">Your Fiends</span>
+			</div>
+			<div class="settings__row">
+				<span class="settings__option">Account Setting</span>
+			</div>
+			<div class="settings__row">
+				<input class="btn btn--orange" type="submit" id="sign-out-btn" value="Sign Out">
+			</div>
+		`;
 
+		settingsContainer.innerHTML = templateHTML;
+
+		const signOutBtn = document.querySelector('#sign-out-btn');
+		signOutBtn.addEventListener('click', core.signOut);
 	}
 
 	userSingedInTemplete(userName) {
@@ -289,7 +327,21 @@ class HTML {
 
 	// Pages Templates
 	mainPageTemplate() {
+		const main = document.querySelector('#app-main');
+		main.innerHTML = `
+			<aside class="profile-intro" id="aside-profile-intro"></aside>
+
+			<div class="posts" id="posts-section">
+				<div class="add-post" id="add-post-container"></div>
+				<section class="posts__container" id="posts-container"></section>
+			</div>
+
+			<aside class="settings" id="profile-settings"></aside>
+		`;
+
+		html.profileIntroTemplete();
 		html.addPostTemplate();
+		html.settingsTemplate();
 		html.wallTemplate();
 	}
 

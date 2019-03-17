@@ -1,14 +1,15 @@
 .add-post {
 	width: 100%;
 	box-sizing: border-box;
-	padding: 5rem 1rem;
+	display: flex;
+	flex-grow: 2;
+	margin-bottom: 2.5rem;
 
 	&__content {
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		max-width: 450px;
 	}
 
 	&__text-area {
@@ -19,30 +20,13 @@
 		padding: 6px 12px;
 		font-size: 1.5rem;
 		outline: none;
-		border-color: $border-input-color;
+		border-color: $border-color;
 		color: $black;
 	}
 
-	&__btn {
+	& #add-post-btn {
 		margin-top: 1rem;
-		width: 100px;
-		padding: 6px 12px;
-		background-color: $orange;
-		transition: background-color .3s ease-in-out;
-		color: $white;
-		font-weight: bold;
-		font-size: 1.5rem;
-		border: none;
-		border-radius: 5px;
-
-		&:hover {
-			background-color: $orange-hover;
-			cursor: pointer;
-		}
-
-		&:disabled {
-			opacity: .7;
-			cursor: default;
-		}
+		width: 120px;
+		margin-bottom: 0;
 	}
 }
