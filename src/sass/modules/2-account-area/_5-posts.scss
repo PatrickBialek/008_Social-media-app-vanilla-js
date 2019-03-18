@@ -5,6 +5,11 @@
 	max-width: 650px;
 	margin: 0 25px;
 
+	&__container {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+
 	&__single-post {
 		border: 1px solid $border-color;
 		background-color: $white;

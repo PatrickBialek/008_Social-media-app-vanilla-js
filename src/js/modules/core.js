@@ -13,6 +13,9 @@ import {
 import {
 	error
 } from "util";
+import {
+	SSL_OP_CRYPTOPRO_TLSEXT_BUG
+} from "constants";
 
 class CORE {
 	initializeFirebase() {
@@ -224,33 +227,43 @@ class CORE {
 		}
 	}
 
+	removePostFromDatabase() {
+		console.log('remove');
+	}
+
 	getAllPostFromDatabase() {
 		const postsRef = firebase.database().ref("posts/"),
-			userPostsContainer = document.querySelector("#posts-container"),
-			posts = new Array();
+			userPostsContainer = document.querySelector("#posts-container");
 
 		postsRef.on("child_added", data => {
 			const post = data.val(),
 				postTime = post.timestamp,
 				currentTime = Date.now(),
-				difference = currentTime - postTime;
+				difference = currentTime - postTime,
+				currentUserEmail = firebase.auth().currentUser.email,
+				authorUserEmail = post.userEmail;
+
+			let removePostBtnTemplate, postPublishDate;
+
+			if (currentUserEmail == authorUserEmail) {
+				removePostBtnTemplate = `<li class="posts__single-control remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>`;
+			} else {
+				removePostBtnTemplate = `<li></li>`;
+			}
 
 			if (difference <= 60000) {
-				const postPublishDate = "about minute ago";
-				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+				postPublishDate = "about minute ago";
 			} else if (difference > 60000 && difference < 3600000) {
-				const postPublishDate = Math.floor(difference / 60000) + " minutes ago";
-				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+				postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 			} else if (difference < 86400000) {
-				const postPublishDate = Math.floor(difference / 3600000) + " hours ago";
-				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+				postPublishDate = Math.floor(difference / 3600000) + " hours ago";
 			} else if (difference > 86400000 && difference < 604800000) {
-				const postPublishDate = Math.floor(difference / 86400000) + " days ago";
-				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+				postPublishDate = Math.floor(difference / 86400000) + " days ago";
 			} else {
-				const postPublishDate = Math.floor(difference / 60000) + " minutes ago";
-				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+				postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 			}
+
+			html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
 		});
 	}
 }

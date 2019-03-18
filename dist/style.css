@@ -405,6 +405,9 @@ body.add-error .error-box {
   flex-grow: 2;
   max-width: 650px;
   margin: 0 25px; }
+  .posts__container {
+    display: flex;
+    flex-direction: column-reverse; }
   .posts__single-post {
     border: 1px solid #e6ecf5;
     background-color: #fff;

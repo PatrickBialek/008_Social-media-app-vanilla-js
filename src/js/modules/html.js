@@ -281,14 +281,19 @@ class HTML {
 					</div>
 				</div>
 				<p>${post.postText}</p>
+				<div class="posts__control-panel">
+					<li class="posts__single-control remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>
+					<li class="posts__single-control like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
+					<li class="posts__single-control comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
+				</div>
 			</article>`;
 
 		postsContainer.innerHTML += templateHTML;
 	}
 
-	singlePostTemplate(userPostsContainer, post, formattedTime) {
+	singlePostTemplate(userPostsContainer, post, formattedTime, removePostBtnTemplate) {
 		const templateHTML = `
-			<article class="posts__single-post">
+			<article class="posts__single-post" id="${post.id}">
 				<div class="posts__info">
 					<div class="posts__avatar">
 						<img src="src/images/user-icon.png" alt="author">
@@ -300,15 +305,31 @@ class HTML {
 				</div>
 				<p>${post.postText}</p>
 				<div class="posts__control-panel">
-					<li class="posts__single-control" id="remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>
-					<li class="posts__single-control" id="like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
-					<li class="posts__single-control" id="comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
+					<div class="remove-btn-post-container">${removePostBtnTemplate}</div>
+					<li class="posts__single-control like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
+					<li class="posts__single-control comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
 				</div>
 			</article>
 		`;
 
 		userPostsContainer.innerHTML += templateHTML;
+
+		const removePostBtns = Array.from(document.querySelectorAll('.remove-btn-post-container'));
+		removePostBtns.forEach(removePostBtn => removePostBtn.addEventListener('click', html.removePostTemplate));
 	}
+
+	removePostTemplate(e) {
+		const postToRemove = e.target.closest('.posts__single-post');
+		const postsContainer = postToRemove.parentElement;
+		const req = confirm('Are you sure?');
+
+		if (req) {
+			postsContainer.removeChild(postToRemove);
+		}
+
+		core.removePostFromDatabase();
+	}
+
 
 	settingsTemplate() {
 		const settingsContainer = document.querySelector("#profile-settings");
