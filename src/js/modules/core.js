@@ -188,34 +188,67 @@ class CORE {
 	}
 
 	addPostToDatabase() {
-		const postText = document.querySelector('.add-post-textarea').value;
+		const postText = document.querySelector("#add-post-textarea").value;
 
 		if (postText != "") {
+			console.log("post will be added");
+
 			const user = firebase.auth().currentUser,
 				userEmail = user.email,
 				userName = user.displayName,
-				id = Date.now() + Math.floor(Math.random() * 100),
-				db = firebase.database().ref("posts/" + id);
+				timestamp = Date.now(),
+				id = timestamp + Math.floor(Math.random() * 100),
+				db = firebase.database().ref("posts/" + id),
+				textArea = document.querySelector("#add-post-textarea");
 
 			const post = {
 				userEmail: userEmail,
 				userName: userName,
+				timestamp: timestamp,
 				id: id,
+				postText: postText,
 				published: false,
 				likes: [],
 				responses: []
 			};
 
+			console.log(post);
+
 			db.set(post);
-			html.addPostResetField();
-			html.addPostOnWall();
+			html.addPostResetField(textArea);
 		} else {
-			console.log('fill all fields!');
+			const errorField = document.querySelector("#add-post-container > .error-box");
+			const errorText = "You have to add some content to your post.";
+
+			html.displayError;
 		}
 	}
 
-	getPostFromDatabase() {
+	getAllPostFromDatabase() {
+		const postsRef = firebase.database().ref("posts/"),
+			userPostsContainer = document.querySelector("#posts-container"),
+			posts = new Array();
 
+		postsRef.on("child_added", data => {
+			const post = data.val(),
+				postTime = post.timestamp,
+				currentTime = Date.now(),
+				difference = currentTime - postTime;
+
+			if (difference < 3600000) {
+				const postPublishDate = Math.floor(difference / 60000) + " minutes ago";
+				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+			} else if (difference < 86400000) {
+				const postPublishDate = Math.floor(difference / 3600000) + " hours ago";
+				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+			} else if (difference > 86400000 && difference < 604800000) {
+				const postPublishDate = Math.floor(difference / 86400000) + " days ago";
+				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+			} else {
+				const postPublishDate = Math.floor(difference / 60000) + " minutes ago";
+				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+			}
+		});
 	}
 }
 

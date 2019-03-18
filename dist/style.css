@@ -409,7 +409,8 @@ body.add-error .error-box {
     border: 1px solid #e6ecf5;
     background-color: #fff;
     padding: 2.5rem;
-    border-radius: 5px; }
+    border-radius: 5px;
+    margin-bottom: 2rem; }
   .posts__info {
     display: flex;
     justify-content: flex-start;
@@ -447,19 +448,19 @@ body.add-error .error-box {
     width: 100%;
     padding: 20px 25px 20px;
     border-bottom: 1px solid #e6ecf5;
-    transition: background-color .3s ease-in-out; }
+    transition: background-color 0.3s ease-in-out; }
     .settings__row:not(:first-child):not(:last-child):hover {
       background-color: #ff5e3a;
       cursor: pointer; }
       .settings__row:not(:first-child):not(:last-child):hover .settings__option {
         color: #fff;
-        opacity: .95; }
+        opacity: 0.95; }
     .settings__row h2 {
       color: #515365;
       font-weight: 700; }
   .settings__option {
-    transition: color .3s ease-in-out; }
-  .settings input[type=submit].btn--orange {
+    transition: color 0.3s ease-in-out; }
+  .settings input[type="submit"].btn--orange {
     max-height: 40px;
     max-width: 120px;
     margin-left: 0;

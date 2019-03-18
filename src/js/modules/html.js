@@ -35,7 +35,7 @@ class HTML {
 	}
 
 	signInTemplate() {
-		const userAuthBox = document.querySelector('#user-auth-box');
+		const userAuthBox = document.querySelector("#user-auth-box");
 
 		const templateHTML = `
 			<div class="sign-in" id="sign-in">
@@ -62,20 +62,20 @@ class HTML {
 
 		userAuthBox.innerHTML = templateHTML;
 
-		const switchToSignUp = document.querySelector('#switch-to-sign-up');
-		switchToSignUp.addEventListener('click', html.signUpTemplate);
+		const switchToSignUp = document.querySelector("#switch-to-sign-up");
+		switchToSignUp.addEventListener("click", html.signUpTemplate);
 
-		const switchToResetPassowrd = document.querySelector('#switch-to-reset-password');
-		switchToResetPassowrd.addEventListener('click', html.resetPasswordTemplate);
+		const switchToResetPassowrd = document.querySelector("#switch-to-reset-password");
+		switchToResetPassowrd.addEventListener("click", html.resetPasswordTemplate);
 
-		const signInBtn = document.querySelector('#sign-in-btn');
-		signInBtn.addEventListener('click', core.signIn);
+		const signInBtn = document.querySelector("#sign-in-btn");
+		signInBtn.addEventListener("click", core.signIn);
 
 		html.cleanErrors();
 	}
 
 	signUpTemplate() {
-		const userAuthBox = document.querySelector('#user-auth-box');
+		const userAuthBox = document.querySelector("#user-auth-box");
 
 		const templateHTML = `
 			<div class="sign-up" id="sign-up">
@@ -127,23 +127,23 @@ class HTML {
 
 		userAuthBox.innerHTML = templateHTML;
 
-		const switchToSignIn = document.querySelector('#switch-to-sign-in');
-		switchToSignIn.addEventListener('click', html.signInTemplate);
+		const switchToSignIn = document.querySelector("#switch-to-sign-in");
+		switchToSignIn.addEventListener("click", html.signInTemplate);
 
-		const signUpBtn = document.querySelector('#sign-up-btn');
-		signUpBtn.addEventListener('click', core.signUp);
+		const signUpBtn = document.querySelector("#sign-up-btn");
+		signUpBtn.addEventListener("click", core.signUp);
 
-		const continueWithFacebookBtn = document.querySelector('#continue-with-facebook');
-		continueWithFacebookBtn.addEventListener('click', core.continueWithFacebook);
+		const continueWithFacebookBtn = document.querySelector("#continue-with-facebook");
+		continueWithFacebookBtn.addEventListener("click", core.continueWithFacebook);
 
-		const continueWithGoogleBtn = document.querySelector('#continue-with-google');
-		continueWithGoogleBtn.addEventListener('click', core.continueWithGoogle);
+		const continueWithGoogleBtn = document.querySelector("#continue-with-google");
+		continueWithGoogleBtn.addEventListener("click", core.continueWithGoogle);
 
 		html.cleanErrors();
 	}
 
 	resetPasswordTemplate() {
-		const userAuthBox = document.querySelector('#user-auth-box');
+		const userAuthBox = document.querySelector("#user-auth-box");
 
 		const templateHTML = `
 			<div class="reset-password" id="reset-password-template">
@@ -162,47 +162,45 @@ class HTML {
 
 		userAuthBox.innerHTML = templateHTML;
 
-		const switchToSignIn = document.querySelector('#switch-to-log-in-area');
-		switchToSignIn.addEventListener('click', html.signInTemplate);
+		const switchToSignIn = document.querySelector("#switch-to-log-in-area");
+		switchToSignIn.addEventListener("click", html.signInTemplate);
 
-		const resetUserPasswordBtn = document.querySelector('#reset-password-btn');
-		resetUserPasswordBtn.addEventListener('click', core.resetUserPassword);
+		const resetUserPasswordBtn = document.querySelector("#reset-password-btn");
+		resetUserPasswordBtn.addEventListener("click", core.resetUserPassword);
 
 		html.cleanErrors();
 	}
 
 	hideResetUserPassword() {
-		const resetPasswordTemplateHTML = document.querySelector('#reset-password-template');
+		const resetPasswordTemplateHTML = document.querySelector("#reset-password-template");
 		resetPasswordTemplateHTML.innerHTML = "";
 	}
 
 	cleanErrors() {
-		const errorTemplateHTML = document.querySelector('#error-box');
+		const errorTemplateHTML = document.querySelector("#error-box");
 
-		document.body.classList.remove('add-error');
+		document.body.classList.remove("add-error");
 		errorTemplateHTML.innerHTML = "";
 	}
 
 	displayError(errors) {
-		const errorTemplateHTML = document.querySelector('#error-box');
+		const errorTemplateHTML = document.querySelector("#error-box");
 
-		document.body.classList.add('add-error');
+		document.body.classList.add("add-error");
 		errorTemplateHTML.innerHTML = errors;
 	}
 
 	cleanSuccess() {
-		document.body.classList.remove('add-success');
+		document.body.classList.remove("add-success");
 		errorTemplateHTML.innerHTML = "";
 	}
 
-	displaySuccess(success) {
-
-	}
+	displaySuccess(success) {}
 
 	// Pages elements tempalates
 	headerTemplete(userName) {
-		const header = document.querySelector('#app-header');
-		let icon = 'src/images/user-icon.png';
+		const header = document.querySelector("#app-header");
+		let icon = "src/images/user-icon.png";
 
 		const templateHTML = `
 		<div class="header__container">
@@ -222,12 +220,12 @@ class HTML {
 
 		header.innerHTML = templateHTML;
 
-		const avatar = document.querySelector('#header-user-avatar');
-		avatar.addEventListener('click', html.mainPageTemplate);
+		const avatar = document.querySelector("#header-user-avatar");
+		avatar.addEventListener("click", html.mainPageTemplate);
 	}
 
 	profileIntroTemplete() {
-		const asideProfilIntro = document.querySelector('#aside-profile-intro');
+		const asideProfilIntro = document.querySelector("#aside-profile-intro");
 		const templateHTML = `
 			<div class="profile-intro__row">
 				<h2>Profil intro</h2>
@@ -250,7 +248,7 @@ class HTML {
 	}
 
 	addPostTemplate() {
-		const addPostContainer = document.querySelector('#add-post-container');
+		const addPostContainer = document.querySelector("#add-post-container");
 		const templateHTML = `
 			<div class="add-post__content">
 				<textarea class="add-post__text-area" id="add-post-textarea" placeholder="Your post..."></textarea>
@@ -261,12 +259,16 @@ class HTML {
 
 		addPostContainer.innerHTML += templateHTML;
 
-		const addPostBtn = document.querySelector('#add-post-btn');
-		addPostBtn.addEventListener('click', core.addPostToDatabase);
+		const addPostBtn = document.querySelector("#add-post-btn");
+		addPostBtn.addEventListener("click", core.addPostToDatabase);
 	}
 
-	wallTemplate() {
-		const postsContainer = document.querySelector('#posts-container');
+	addPostResetField(textArea) {
+		textArea.value = "";
+	}
+
+	addPostOnWall(post) {
+		const postsContainer = document.querySelector("#posts-container");
 		const templateHTML = `
 			<article class="posts__single-post">
 				<div class="posts__info">
@@ -274,19 +276,37 @@ class HTML {
 						<img src="src/images/user-icon.png" alt="author">
 					</div>
 					<div class="posts__author">
-						<h2>Patryk Białek</h2>
-						<time datetime="2008-02-14 20:00">5 hours ago</time>
+						<h2>${post.userName}</h2>
+						<time datetime="2008-02-14 20:00">${post.timestamp}</time>
 					</div>
 				</div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at iaculis elit, vel pulvinar felis. Morbi vestibulum suscipit erat, nec feugiat urna ultrices vitae. Donec vitae pharetra erat, sit amet congue leo. Vivamus mattis urna arcu, at maximus enim imperdiet ut.</p>				
-			</article>
-		`;
+				<p>${post.postText}</p>
+			</article>`;
 
 		postsContainer.innerHTML += templateHTML;
 	}
 
+	singlePostTemplate(userPostsContainer, post, formattedTime) {
+		const templateHTML = `
+			<article class="posts__single-post">
+				<div class="posts__info">
+					<div class="posts__avatar">
+						<img src="src/images/user-icon.png" alt="author">
+					</div>
+					<div class="posts__author">
+						<h2>${post.userName}</h2>
+						<time datetime="2008-02-14 20:00">${formattedTime}</time>
+					</div>
+				</div>
+				<p>${post.postText}</p>
+			</article>
+		`;
+
+		userPostsContainer.innerHTML += templateHTML;
+	}
+
 	settingsTemplate() {
-		const settingsContainer = document.querySelector('#profile-settings');
+		const settingsContainer = document.querySelector("#profile-settings");
 		const templateHTML = `
 			<div class="settings__row">
 				<h2>Settings</h2>
@@ -310,12 +330,12 @@ class HTML {
 
 		settingsContainer.innerHTML = templateHTML;
 
-		const signOutBtn = document.querySelector('#sign-out-btn');
-		signOutBtn.addEventListener('click', core.signOut);
+		const signOutBtn = document.querySelector("#sign-out-btn");
+		signOutBtn.addEventListener("click", core.signOut);
 	}
 
 	userSingedInTemplete(userName) {
-		const bodyTemplate = document.querySelector('#app-body');
+		const bodyTemplate = document.querySelector("#app-body");
 		const templateHTML = `
 			<header class="header" id="app-header"></header>
 			<main class="main" id="app-main"></main>
@@ -327,7 +347,7 @@ class HTML {
 
 	// Pages Templates
 	mainPageTemplate() {
-		const main = document.querySelector('#app-main');
+		const main = document.querySelector("#app-main");
 		main.innerHTML = `
 			<aside class="profile-intro" id="aside-profile-intro"></aside>
 
@@ -342,7 +362,7 @@ class HTML {
 		html.profileIntroTemplete();
 		html.addPostTemplate();
 		html.settingsTemplate();
-		html.wallTemplate();
+		core.getAllPostFromDatabase();
 	}
 
 	errorTemplate() {

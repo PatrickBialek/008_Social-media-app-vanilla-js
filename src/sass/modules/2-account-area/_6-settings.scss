@@ -16,7 +16,7 @@
 		width: 100%;
 		padding: 20px 25px 20px;
 		border-bottom: 1px solid $border-color;
-		transition: background-color .3s ease-in-out;
+		transition: background-color 0.3s ease-in-out;
 
 		&:not(:first-child):not(:last-child):hover {
 			background-color: $orange;
@@ -24,7 +24,7 @@
 
 			& .settings__option {
 				color: $white;
-				opacity: .95;
+				opacity: 0.95;
 			}
 		}
 
@@ -35,10 +35,10 @@
 	}
 
 	&__option {
-		transition: color .3s ease-in-out;
+		transition: color 0.3s ease-in-out;
 	}
 
-	& input[type=submit].btn--orange {
+	& input[type="submit"].btn--orange {
 		max-height: 40px;
 		max-width: 120px;
 		margin-left: 0;
