@@ -11,6 +11,7 @@
 		padding: 2.5rem;
 		border-radius: 5px;
 		margin-bottom: 2rem;
+		position: relative;
 	}
 
 	&__info {
@@ -30,6 +31,7 @@
 		margin-left: 1.4rem;
 		position: relative;
 		padding-bottom: 20px;
+		width: 200px;
 
 		& h2 {
 			margin-bottom: 0;
@@ -44,6 +46,35 @@
 			color: #888da8;
 			transform: translateY(-5px);
 			position: absolute;
+		}
+	}
+
+	&__control-panel {
+		position: absolute;
+		right: -15px;
+		top: 8px;
+	}
+
+	&__single-control {
+		display: block;
+		margin-bottom: 6px;
+		margin-right: 0;
+		background-color: #9a9fbf;
+		width: 34px;
+		height: 34px;
+		line-height: 36px;
+		border-radius: 50%;
+		display: flex;
+		transition: background-color .3s ease-in-out;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #ffbf00;
+		}
+
+		& img {
+			width: 16px;
+			margin: 0 auto;
 		}
 	}
 }

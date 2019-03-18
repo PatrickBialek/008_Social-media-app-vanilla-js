@@ -299,6 +299,11 @@ class HTML {
 					</div>
 				</div>
 				<p>${post.postText}</p>
+				<div class="posts__control-panel">
+					<li class="posts__single-control" id="remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>
+					<li class="posts__single-control" id="like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
+					<li class="posts__single-control" id="comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
+				</div>
 			</article>
 		`;
 

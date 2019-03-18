@@ -410,7 +410,8 @@ body.add-error .error-box {
     background-color: #fff;
     padding: 2.5rem;
     border-radius: 5px;
-    margin-bottom: 2rem; }
+    margin-bottom: 2rem;
+    position: relative; }
   .posts__info {
     display: flex;
     justify-content: flex-start;
@@ -421,7 +422,8 @@ body.add-error .error-box {
   .posts__author {
     margin-left: 1.4rem;
     position: relative;
-    padding-bottom: 20px; }
+    padding-bottom: 20px;
+    width: 200px; }
     .posts__author h2 {
       margin-bottom: 0;
       color: #515365;
@@ -433,6 +435,27 @@ body.add-error .error-box {
       color: #888da8;
       transform: translateY(-5px);
       position: absolute; }
+  .posts__control-panel {
+    position: absolute;
+    right: -15px;
+    top: 8px; }
+  .posts__single-control {
+    display: block;
+    margin-bottom: 6px;
+    margin-right: 0;
+    background-color: #9a9fbf;
+    width: 34px;
+    height: 34px;
+    line-height: 36px;
+    border-radius: 50%;
+    display: flex;
+    transition: background-color .3s ease-in-out; }
+    .posts__single-control:hover {
+      cursor: pointer;
+      background-color: #ffbf00; }
+    .posts__single-control img {
+      width: 16px;
+      margin: 0 auto; }
 
 .settings {
   flex-grow: 1;

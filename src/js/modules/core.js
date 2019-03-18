@@ -235,7 +235,10 @@ class CORE {
 				currentTime = Date.now(),
 				difference = currentTime - postTime;
 
-			if (difference < 3600000) {
+			if (difference <= 60000) {
+				const postPublishDate = "about minute ago";
+				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
+			} else if (difference > 60000 && difference < 3600000) {
 				const postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 				html.singlePostTemplate(userPostsContainer, post, postPublishDate);
 			} else if (difference < 86400000) {
