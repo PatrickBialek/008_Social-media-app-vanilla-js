@@ -227,8 +227,9 @@ class CORE {
 		}
 	}
 
-	removePostFromDatabase() {
-		console.log('remove');
+	removePostFromDatabase(id) {
+		const post = firebase.database().ref("posts/" + id);
+		post.remove();
 	}
 
 	getAllPostFromDatabase() {

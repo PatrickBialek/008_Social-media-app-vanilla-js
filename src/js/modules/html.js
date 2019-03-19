@@ -324,10 +324,11 @@ class HTML {
 		const req = confirm('Are you sure?');
 
 		if (req) {
+			const id = Number(postToRemove.id);
 			postsContainer.removeChild(postToRemove);
-		}
 
-		core.removePostFromDatabase();
+			core.removePostFromDatabase(id);
+		}
 	}
 
 
