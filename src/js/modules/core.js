@@ -88,6 +88,8 @@ class CORE {
 					console.log(error.message);
 					html.displayError(error.message);
 				});
+
+			core.createUserDatabase();
 		} else {
 			const error = "You have to fill all fields";
 			html.displayError(error);
@@ -140,6 +142,8 @@ class CORE {
 
 				errors.push(errorMessage);
 			});
+
+		core.createUserDatabase();
 	}
 
 	continueWithGoogle() {
@@ -171,6 +175,8 @@ class CORE {
 
 				errors.push(errorMessage);
 			});
+
+		core.createUserDatabase();
 	}
 
 	signOut() {
@@ -184,6 +190,26 @@ class CORE {
 			.catch(error => {
 				console.log(error);
 			});
+	}
+
+	createUserDatabase() {
+		const user = firebase.auth().currentUser,
+			userEmail = user.email,
+			userName = user.displayName,
+			id = timestamp + Math.floor(Math.random() * 100),
+			db = firebase.database().ref("users/" + id);
+
+
+		const userData = {
+			id: id,
+			userEmail: userEmail,
+			userName: userName,
+			userAbout: "Fill this section in account settings...",
+			userVisitedPlaces: "Fill this section in account settings...",
+			userWantToVist: "Fill this section in account settings..."
+		}
+
+		db.set(userData);
 	}
 
 	// Posts functions
@@ -276,43 +302,45 @@ class CORE {
 	// User setting functions
 	changeUserNameInDatabase() {
 		const userName = document.querySelector('#edit-account-user-name').value;
-		if (userName != "") {
 
+		if (userName != "") {
+			const userEmail = firebase.auth().currentUser.email;
+			const db = firebase.database().ref("user/");
 		}
 	}
 
 	changeUserEmailInDatabase() {
 		const userEmail = document.querySelector('#edit-account-user-name').value;
 		if (userEmail != "") {
-
+			const userEmail = firebase.auth().currentUser.email;
 		}
 	}
 
 	changeUserPasswordInDatabase() {
 		const userPassword = document.querySelector('#edit-account-user-password').value;
 		if (userPassword != "") {
-
+			const userEmail = firebase.auth().currentUser.email;
 		}
 	}
 
 	changeUserAboutMeInDatabase() {
 		const userAboutMe = document.querySelector('#edit-account-change-about-me').value;
 		if (userAboutMe != "") {
-
+			const userEmail = firebase.auth().currentUser.email;
 		}
 	}
 
 	changeUserVisitedPlacesInDatabase() {
 		const userVisitedPlaces = document.querySelector('#edit-account-visited-places').value;
 		if (userVisitedPlaces != "") {
-
+			const userEmail = firebase.auth().currentUser.email;
 		}
 	}
 
 	changeUserWantToSeeInDatabase() {
 		const userWantToSee = document.querySelector('#edit-account-want-to-see').value;
 		if (userWantToSee != "") {
-
+			const userEmail = firebase.auth().currentUser.email;
 		}
 	}
 }
