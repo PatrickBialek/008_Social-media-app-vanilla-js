@@ -10,12 +10,7 @@ import {
 	html,
 	appBody
 } from "../app";
-import {
-	error
-} from "util";
-import {
-	SSL_OP_CRYPTOPRO_TLSEXT_BUG
-} from "constants";
+
 
 class CORE {
 	initializeFirebase() {
@@ -210,9 +205,7 @@ class CORE {
 				timestamp: timestamp,
 				id: id,
 				postText: postText,
-				published: false,
-				likes: [],
-				responses: []
+				likes: {}
 			};
 
 			console.log(post);
@@ -266,6 +259,47 @@ class CORE {
 
 			html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
 		});
+	}
+
+	likePost(e) {
+		const postTemplateHTML = e.target.closest('.posts__single-post'),
+			id = Number(postTemplateHTML.id),
+			post = firebase.database().ref('posts/' + id + '/likes'),
+			userName = firebase.auth().currentUser.displayName;
+
+		post.push(userName);
+		html.likedPostTemplate(postTemplateHTML);
+	}
+
+	// User setting functions
+	changeUserNameInDatabase() {
+		const userName = document.querySelector('#edit-account-user-name').value;
+		console.log(userName);
+	}
+
+	changeUserEmailInDatabase() {
+		const userEmail = document.querySelector('#edit-account-user-name').value;
+		console.log(userEmail);
+	}
+
+	changeUserPasswordInDatabase() {
+		const userPassword = document.querySelector('#edit-account-user-password').value;
+		console.log(userPassword);
+	}
+
+	changeUserAboutMeInDatabase() {
+		const userAboutMe = document.querySelector('#edit-account-change-about-me').value;
+		console.log(userAboutMe);
+	}
+
+	changeUserVisitedPlacesInDatabase() {
+		const userVisitedPlaces = document.querySelector('#edit-account-visited-places').value;
+		console.log(userVisitedPlaces);
+	}
+
+	changeUserWantToSeeInDatabase() {
+		const userWantToSee = document.querySelector('#edit-account-want-to-see').value;
+		console.log(userWantToSee);
 	}
 }
 

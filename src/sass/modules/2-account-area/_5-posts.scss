@@ -82,4 +82,19 @@
 			margin: 0 auto;
 		}
 	}
+
+	& hr {
+		width: 100%;
+		border: .5px solid #e6ecf5;
+		margin-top: 2rem;
+		margin-bottom: 1.5rem;
+	}
+
+	&__likes {
+		font-size: 1.3rem;
+	}
+}
+
+.liked-post {
+	background-color: red !important;
 }

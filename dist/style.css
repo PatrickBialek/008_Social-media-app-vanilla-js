@@ -146,6 +146,9 @@ body {
 .margin-bottom-medium {
   margin-bottom: 2rem; }
 
+.margin-top-small {
+  margin-top: 1rem; }
+
 .heading-primary,
 .heading-secondary,
 .heading-third {
@@ -459,6 +462,16 @@ body.add-error .error-box {
     .posts__single-control img {
       width: 16px;
       margin: 0 auto; }
+  .posts hr {
+    width: 100%;
+    border: .5px solid #e6ecf5;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem; }
+  .posts__likes {
+    font-size: 1.3rem; }
+
+.liked-post {
+  background-color: red !important; }
 
 .settings {
   flex-grow: 1;
@@ -484,6 +497,9 @@ body.add-error .error-box {
     .settings__row h2 {
       color: #515365;
       font-weight: 700; }
+  .settings a {
+    text-decoration: none;
+    color: #8d97ad; }
   .settings__option {
     transition: color 0.3s ease-in-out; }
   .settings input[type="submit"].btn--orange {
@@ -540,4 +556,43 @@ body.add-error .error-box {
       font-size: 1.4rem; }
   .profile-intro__sub-titile {
     font-weight: 500;
+    color: #515365; }
+
+.edit-account {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex-grow: 2;
+  max-width: 650px;
+  background-color: #fff;
+  border: 1px solid #e6ecf5;
+  border-radius: 5px;
+  margin: 0 2.5rem; }
+  .edit-account__row {
+    padding: 20px 25px 20px;
+    border-bottom: 1px solid #e6ecf5;
+    display: flex;
+    flex-direction: column; }
+    .edit-account__row h2 {
+      color: #515365;
+      font-weight: 700; }
+  .edit-account input[type="submit"].btn--orange {
+    width: 180px; }
+  .edit-account input[type="text"] {
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    font-size: 1.5rem;
+    outline: none;
+    border: 1px solid #e6ecf5;
+    color: #515365; }
+  .edit-account textarea {
+    resize: none;
+    height: 100px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    font-size: 1.5rem;
+    outline: none;
+    border: 1px solid #e6ecf5;
     color: #515365; }

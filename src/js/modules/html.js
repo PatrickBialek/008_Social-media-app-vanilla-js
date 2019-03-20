@@ -304,6 +304,8 @@ class HTML {
 					</div>
 				</div>
 				<p>${post.postText}</p>
+				<hr>
+				<div class="posts__likes">Likes: </div>
 				<div class="posts__control-panel">
 					<div class="remove-btn-post-container">${removePostBtnTemplate}</div>
 					<li class="posts__single-control like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
@@ -316,6 +318,12 @@ class HTML {
 
 		const removePostBtns = Array.from(document.querySelectorAll('.remove-btn-post-container'));
 		removePostBtns.forEach(removePostBtn => removePostBtn.addEventListener('click', html.removePostTemplate));
+
+		const likePostBtns = Array.from(document.querySelectorAll('.like-post'));
+		likePostBtns.forEach(likePostBtn => likePostBtn.addEventListener('click', core.likePost));
+
+		const whoLikesContainer = document.querySelector('.posts__control-panel');
+		html.whoLikesThisPost(post.likes, whoLikesContainer)
 	}
 
 	removePostTemplate(e) {
@@ -331,6 +339,17 @@ class HTML {
 		}
 	}
 
+	likedPostTemplate(postTemplateHTML) {
+		const likeContainer = postTemplateHTML.getElementsByClassName("like-post")[0];
+
+		if (likeContainer.classList.contains('liked-post')) {
+			likeContainer.classList.remove('liked-post');
+		} else {
+			likeContainer.classList.add('liked-post');
+		}
+	}
+
+	whoLikesThisPost(likes, whoLikesContainer) {}
 
 	settingsTemplate() {
 		const settingsContainer = document.querySelector("#profile-settings");
@@ -339,16 +358,16 @@ class HTML {
 				<h2>Settings</h2>
 			</div>
 			<div class="settings__row">
-				<span class="settings__option">Home Page</span>
+				<a href="#" id="settings-home-page"><span class="settings__option">Home Page</span></a>
 			</div>
 			<div class="settings__row">
-				<span class="settings__option">Your Profile</span>
+				<a href="#" id="settings-your-profile-page"><span class="settings__option">Your Profile</span></a>
 			</div>
 			<div class="settings__row">
-				<span class="settings__option">Your Fiends</span>
+				<a href="#" id="settings-your-fiends-page"><span class="settings__option">Your Fiends</span></a>
 			</div>
 			<div class="settings__row">
-				<span class="settings__option">Account Setting</span>
+				<a href="#" id="edit-account-page"><span class="settings__option">Account Setting</span></a>
 			</div>
 			<div class="settings__row">
 				<input class="btn btn--orange" type="submit" id="sign-out-btn" value="Sign Out">
@@ -359,6 +378,66 @@ class HTML {
 
 		const signOutBtn = document.querySelector("#sign-out-btn");
 		signOutBtn.addEventListener("click", core.signOut);
+
+		const settingsHomePage = document.querySelector('#settings-home-page');
+		settingsHomePage.addEventListener('click', html.mainPageTemplate);
+
+		const settingsPageBtn = document.querySelector('#edit-account-page');
+		settingsPageBtn.addEventListener('click', html.editAccountsPageTemplate);
+	}
+
+	editAccountTemplate() {
+		const settingsTemplate = document.querySelector("#edit-account");
+		console.log(settingsTemplate);
+		const templateHTML = `
+			<div class="edit-account__row">
+				<h2>Edit your account</h2>
+			</div>
+			<div class="edit-account__row">
+				<input type="text" id="edit-account-user-name" placeholder="Change name..."> 
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-name-btn" value="Change name">
+			</div>
+			<div class="edit-account__row">
+				<input type="text" id="edit-account-user-name" placeholder="Change email..."> 
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-email-btn" value="Change email">
+			</div>
+			<div class="edit-account__row">
+				<input type="text" id="edit-account-user-password" placeholder="Change password...">
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-password-btn" value="Change password">
+			</div>
+			<div class="edit-account__row">
+				<textarea id="edit-account-change-about-me" placeholder="Change about me..."></textarea>
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-about-me-btn" value="Change about me">
+			</div>
+			<div class="edit-account__row">
+				<textarea id="edit-account-visited-places" placeholder="Change visited places..."></textarea>
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-visited-places" value="Visited places">
+			</div>
+			<div class="edit-account__row">
+				<textarea id="edit-account-want-to-see" placeholder="Change want to see..."></textarea>
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-want-to-see-btn" value="Change want to see">
+			</div>
+		`;
+
+		settingsTemplate.innerHTML = templateHTML;
+
+		const editAccountUserNameBtn = document.querySelector('#edit-account-user-name-btn');
+		editAccountUserNameBtn.addEventListener('click', core.changeUserNameInDatabase);
+
+		const editAccountUserEmailBtn = document.querySelector('#edit-account-user-email-btn');
+		editAccountUserEmailBtn.addEventListener('click', core.changeUserEmailInDatabase);
+
+		const editAccountUserPasswordBtn = document.querySelector('#edit-account-user-password-btn');
+		editAccountUserPasswordBtn.addEventListener('click', core.changeUserPasswordInDatabase);
+
+		const editAccountUserAboutMeBtn = document.querySelector('#edit-account-user-about-me-btn');
+		editAccountUserAboutMeBtn.addEventListener('click', core.changeUserAboutMeInDatabase);
+
+		const editAccountUserVisitedPlaces = document.querySelector('#edit-account-user-visited-places');
+		editAccountUserVisitedPlaces.addEventListener('click', core.changeUserVisitedPlacesInDatabase);
+
+		const editAccountUserWantToSeeBtn = document.querySelector('#edit-account-user-want-to-see-btn');
+		editAccountUserWantToSeeBtn.addEventListener('click', core.changeUserWantToSeeInDatabase);
 	}
 
 	userSingedInTemplete(userName) {
@@ -391,6 +470,23 @@ class HTML {
 		html.settingsTemplate();
 		core.getAllPostFromDatabase();
 	}
+
+	editAccountsPageTemplate() {
+		const main = document.querySelector("#app-main");
+		main.innerHTML = `
+			<aside class="profile-intro" id="aside-profile-intro"></aside>
+
+			<div class="edit-account" id="edit-account"></div>
+
+			<aside class="settings" id="profile-settings"></aside>
+		`;
+
+		html.profileIntroTemplete();
+		html.settingsTemplate();
+		html.editAccountTemplate();
+	}
+
+
 
 	errorTemplate() {
 		const templateHTML = ``;

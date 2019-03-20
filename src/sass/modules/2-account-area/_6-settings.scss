@@ -34,6 +34,11 @@
 		}
 	}
 
+	& a {
+		text-decoration: none;
+		color: #8d97ad;
+	}
+
 	&__option {
 		transition: color 0.3s ease-in-out;
 	}
