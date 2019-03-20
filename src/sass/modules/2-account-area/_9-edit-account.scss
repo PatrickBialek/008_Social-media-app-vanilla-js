@@ -25,7 +25,8 @@
 		width: 180px;
 	}
 
-	& input[type="text"] {
+	& input[type="text"],
+	& input[type="password"] {
 		border-radius: 5px;
 		box-sizing: border-box;
 		padding: 6px 12px;

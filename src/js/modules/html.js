@@ -388,34 +388,33 @@ class HTML {
 
 	editAccountTemplate() {
 		const settingsTemplate = document.querySelector("#edit-account");
-		console.log(settingsTemplate);
 		const templateHTML = `
 			<div class="edit-account__row">
 				<h2>Edit your account</h2>
 			</div>
 			<div class="edit-account__row">
 				<input type="text" id="edit-account-user-name" placeholder="Change name..."> 
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-name-btn" value="Change name">
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-name-btn" value="Your name...">
 			</div>
 			<div class="edit-account__row">
 				<input type="text" id="edit-account-user-name" placeholder="Change email..."> 
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-email-btn" value="Change email">
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-email-btn" value="Your email...">
 			</div>
 			<div class="edit-account__row">
-				<input type="text" id="edit-account-user-password" placeholder="Change password...">
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-password-btn" value="Change password">
+				<input type="password" id="edit-account-user-password" placeholder="Change password...">
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-password-btn" value="Your password...">
 			</div>
 			<div class="edit-account__row">
 				<textarea id="edit-account-change-about-me" placeholder="Change about me..."></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-about-me-btn" value="Change about me">
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-about-me-btn" value="About me...">
 			</div>
 			<div class="edit-account__row">
 				<textarea id="edit-account-visited-places" placeholder="Change visited places..."></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-visited-places" value="Visited places">
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-visited-places" value="Visited places...">
 			</div>
 			<div class="edit-account__row">
 				<textarea id="edit-account-want-to-see" placeholder="Change want to see..."></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-want-to-see-btn" value="Change want to see">
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-want-to-see-btn" value="Change want to see...">
 			</div>
 		`;
 

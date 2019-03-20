@@ -26,6 +26,7 @@ class CORE {
 		firebase.initializeApp(config);
 	}
 
+	// Auth functions
 	checkIfUserIsLogIn() {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
@@ -185,6 +186,7 @@ class CORE {
 			});
 	}
 
+	// Posts functions
 	addPostToDatabase() {
 		const postText = document.querySelector("#add-post-textarea").value;
 
@@ -274,32 +276,44 @@ class CORE {
 	// User setting functions
 	changeUserNameInDatabase() {
 		const userName = document.querySelector('#edit-account-user-name').value;
-		console.log(userName);
+		if (userName != "") {
+
+		}
 	}
 
 	changeUserEmailInDatabase() {
 		const userEmail = document.querySelector('#edit-account-user-name').value;
-		console.log(userEmail);
+		if (userEmail != "") {
+
+		}
 	}
 
 	changeUserPasswordInDatabase() {
 		const userPassword = document.querySelector('#edit-account-user-password').value;
-		console.log(userPassword);
+		if (userPassword != "") {
+
+		}
 	}
 
 	changeUserAboutMeInDatabase() {
 		const userAboutMe = document.querySelector('#edit-account-change-about-me').value;
-		console.log(userAboutMe);
+		if (userAboutMe != "") {
+
+		}
 	}
 
 	changeUserVisitedPlacesInDatabase() {
 		const userVisitedPlaces = document.querySelector('#edit-account-visited-places').value;
-		console.log(userVisitedPlaces);
+		if (userVisitedPlaces != "") {
+
+		}
 	}
 
 	changeUserWantToSeeInDatabase() {
 		const userWantToSee = document.querySelector('#edit-account-want-to-see').value;
-		console.log(userWantToSee);
+		if (userWantToSee != "") {
+
+		}
 	}
 }
 
