@@ -382,8 +382,12 @@ class HTML {
 		const settingsHomePage = document.querySelector('#settings-home-page');
 		settingsHomePage.addEventListener('click', html.mainPageTemplate);
 
+		const settingsYourProfile = document.querySelector('#settings-your-profile-page');
+		settingsYourProfile.addEventListener('click', html.yourProfilePage);
+
 		const settingsPageBtn = document.querySelector('#edit-account-page');
 		settingsPageBtn.addEventListener('click', html.editAccountsPageTemplate);
+
 	}
 
 	editAccountTemplate() {
@@ -469,6 +473,26 @@ class HTML {
 		html.settingsTemplate();
 		core.getAllPostFromDatabase();
 	}
+
+	yourProfilePage() {
+		const main = document.querySelector("#app-main");
+		main.innerHTML = `
+			<aside class="profile-intro" id="aside-profile-intro"></aside>
+
+			<div class="posts" id="posts-section">
+				<div class="add-post" id="add-post-container"></div>
+				<section class="posts__container" id="posts-container"></section>
+			</div>
+
+			<aside class="settings" id="profile-settings"></aside>
+		`;
+
+		html.profileIntroTemplete();
+		html.addPostTemplate();
+		html.settingsTemplate();
+		core.getYourPostsFromDatabase();
+	}
+
 
 	editAccountsPageTemplate() {
 		const main = document.querySelector("#app-main");

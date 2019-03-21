@@ -70,6 +70,8 @@ class CORE {
 			userPassword = document.querySelector("#sign-up-password").value,
 			re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 			isEmailCorrect = re.test(userEmail),
+			timestamp = Date.now(),
+			id = timestamp + Math.floor(Math.random() * 100),
 			errors = [];
 
 		if (userName != "" && userPassword != "" && isEmailCorrect != false) {
@@ -89,7 +91,10 @@ class CORE {
 					html.displayError(error.message);
 				});
 
-			core.createUserDatabase();
+			setTimeout(() => {
+				core.createUserDatabase();
+			}, 2000)
+
 		} else {
 			const error = "You have to fill all fields";
 			html.displayError(error);
@@ -194,14 +199,15 @@ class CORE {
 
 	createUserDatabase() {
 		const user = firebase.auth().currentUser,
-			userEmail = user.email,
-			userName = user.displayName,
-			id = timestamp + Math.floor(Math.random() * 100),
-			db = firebase.database().ref("users/" + id);
+			userName = user.displayName;
 
+		let userEmail = user.email;
 
+		userEmail = userEmail.replace(/\./g, '-');
+		userEmail = userEmail.replace(/@/g, '+');
+
+		const db = firebase.database().ref("users/" + userEmail);
 		const userData = {
-			id: id,
 			userEmail: userEmail,
 			userName: userName,
 			userAbout: "Fill this section in account settings...",
@@ -217,8 +223,6 @@ class CORE {
 		const postText = document.querySelector("#add-post-textarea").value;
 
 		if (postText != "") {
-			console.log("post will be added");
-
 			const user = firebase.auth().currentUser,
 				userEmail = user.email,
 				userName = user.displayName,
@@ -235,8 +239,6 @@ class CORE {
 				postText: postText,
 				likes: {}
 			};
-
-			console.log(post);
 
 			db.set(post);
 			html.addPostResetField(textArea);
