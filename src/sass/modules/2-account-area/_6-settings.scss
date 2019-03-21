@@ -14,9 +14,13 @@
 
 	&__row {
 		width: 100%;
-		padding: 20px 25px 20px;
 		border-bottom: 1px solid $border-color;
 		transition: background-color 0.3s ease-in-out;
+
+		&:first-child,
+		&:last-child {
+			padding: 20px 25px 20px;
+		}
 
 		&:not(:first-child):not(:last-child):hover {
 			background-color: $orange;
@@ -37,6 +41,7 @@
 	& a {
 		text-decoration: none;
 		color: #8d97ad;
+		padding: 20px 25px 20px;
 	}
 
 	&__option {

@@ -5,6 +5,15 @@
 	max-width: 650px;
 	margin: 0 25px;
 
+	&__titile {
+		margin-bottom: 1rem;
+
+		& h2 {
+			font-weight: 700;
+			color: $black;
+		}
+	}
+
 	&__container {
 		display: flex;
 		flex-direction: column-reverse;

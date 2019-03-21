@@ -291,6 +291,41 @@ class CORE {
 		});
 	}
 
+	getYourPostsFromDatabase() {
+		const postsRef = firebase.database().ref("posts/"),
+			userPostsContainer = document.querySelector("#your-posts-container"),
+			userEmail = (firebase.auth().currentUser.email);
+
+		if (userEmail) {
+			postsRef.on("child_added", data => {
+				const post = data.val();
+
+				if (post.userEmail === userEmail) {
+					const postTime = post.timestamp,
+						currentTime = Date.now(),
+						difference = currentTime - postTime,
+						removePostBtnTemplate = `<li class="posts__single-control remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>`;
+
+					let postPublishDate;
+
+					if (difference <= 60000) {
+						postPublishDate = "about minute ago";
+					} else if (difference > 60000 && difference < 3600000) {
+						postPublishDate = Math.floor(difference / 60000) + " minutes ago";
+					} else if (difference < 86400000) {
+						postPublishDate = Math.floor(difference / 3600000) + " hours ago";
+					} else if (difference > 86400000 && difference < 604800000) {
+						postPublishDate = Math.floor(difference / 86400000) + " days ago";
+					} else {
+						postPublishDate = Math.floor(difference / 60000) + " minutes ago";
+					}
+
+					html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
+				}
+			});
+		}
+	}
+
 	likePost(e) {
 		const postTemplateHTML = e.target.closest('.posts__single-post'),
 			id = Number(postTemplateHTML.id),

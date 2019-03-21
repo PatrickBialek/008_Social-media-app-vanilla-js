@@ -481,7 +481,10 @@ class HTML {
 
 			<div class="posts" id="posts-section">
 				<div class="add-post" id="add-post-container"></div>
-				<section class="posts__container" id="posts-container"></section>
+				<div class="posts__titile">
+					<h2>Your posts:</2>
+				</div>
+				<section class="posts__container" id="your-posts-container"></section>
 			</div>
 
 			<aside class="settings" id="profile-settings"></aside>

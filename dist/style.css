@@ -408,6 +408,11 @@ body.add-error .error-box {
   flex-grow: 2;
   max-width: 650px;
   margin: 0 25px; }
+  .posts__titile {
+    margin-bottom: 1rem; }
+    .posts__titile h2 {
+      font-weight: 700;
+      color: #515365; }
   .posts__container {
     display: flex;
     flex-direction: column-reverse; }
@@ -485,9 +490,10 @@ body.add-error .error-box {
     box-sizing: border-box; }
   .settings__row {
     width: 100%;
-    padding: 20px 25px 20px;
     border-bottom: 1px solid #e6ecf5;
     transition: background-color 0.3s ease-in-out; }
+    .settings__row:first-child, .settings__row:last-child {
+      padding: 20px 25px 20px; }
     .settings__row:not(:first-child):not(:last-child):hover {
       background-color: #ff5e3a;
       cursor: pointer; }
@@ -499,7 +505,8 @@ body.add-error .error-box {
       font-weight: 700; }
   .settings a {
     text-decoration: none;
-    color: #8d97ad; }
+    color: #8d97ad;
+    padding: 20px 25px 20px; }
   .settings__option {
     transition: color 0.3s ease-in-out; }
   .settings input[type="submit"].btn--orange {
