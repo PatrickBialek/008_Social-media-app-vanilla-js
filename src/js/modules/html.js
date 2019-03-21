@@ -390,35 +390,27 @@ class HTML {
 
 	}
 
-	editAccountTemplate() {
+	editAccountTemplate(user) {
 		const settingsTemplate = document.querySelector("#edit-account");
 		const templateHTML = `
 			<div class="edit-account__row">
 				<h2>Edit your account</h2>
 			</div>
 			<div class="edit-account__row">
-				<input type="text" id="edit-account-user-name" placeholder="Change name..."> 
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-name-btn" value="Your name...">
+				<input type="text" id="edit-account-user-name" value="${user.userName}"> 
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-name-btn" value="Change name">
 			</div>
 			<div class="edit-account__row">
-				<input type="text" id="edit-account-user-name" placeholder="Change email..."> 
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-email-btn" value="Your email...">
+				<textarea id="edit-account-change-about-me" value="${user.userAbout}"></textarea>
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-about-me-btn" value="Change about me">
 			</div>
 			<div class="edit-account__row">
-				<input type="password" id="edit-account-user-password" placeholder="Change password...">
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-password-btn" value="Your password...">
+				<textarea id="edit-account-visited-places" value="${user.userVisitedPlaces}"></textarea>
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-visited-places" value="Change visited places">
 			</div>
 			<div class="edit-account__row">
-				<textarea id="edit-account-change-about-me" placeholder="Change about me..."></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-about-me-btn" value="About me...">
-			</div>
-			<div class="edit-account__row">
-				<textarea id="edit-account-visited-places" placeholder="Change visited places..."></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-visited-places" value="Visited places...">
-			</div>
-			<div class="edit-account__row">
-				<textarea id="edit-account-want-to-see" placeholder="Change want to see..."></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-want-to-see-btn" value="Change want to see...">
+				<textarea id="edit-account-want-to-see" value="${user.userWantToVist}"></textarea>
+				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-want-to-see-btn" value="Change want to see">
 			</div>
 		`;
 
@@ -426,12 +418,6 @@ class HTML {
 
 		const editAccountUserNameBtn = document.querySelector('#edit-account-user-name-btn');
 		editAccountUserNameBtn.addEventListener('click', core.changeUserNameInDatabase);
-
-		const editAccountUserEmailBtn = document.querySelector('#edit-account-user-email-btn');
-		editAccountUserEmailBtn.addEventListener('click', core.changeUserEmailInDatabase);
-
-		const editAccountUserPasswordBtn = document.querySelector('#edit-account-user-password-btn');
-		editAccountUserPasswordBtn.addEventListener('click', core.changeUserPasswordInDatabase);
 
 		const editAccountUserAboutMeBtn = document.querySelector('#edit-account-user-about-me-btn');
 		editAccountUserAboutMeBtn.addEventListener('click', core.changeUserAboutMeInDatabase);
@@ -509,7 +495,7 @@ class HTML {
 
 		html.profileIntroTemplete();
 		html.settingsTemplate();
-		html.editAccountTemplate();
+		core.getCurrentUserSettings();
 	}
 
 

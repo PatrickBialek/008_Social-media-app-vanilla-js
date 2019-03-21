@@ -584,7 +584,7 @@ body.add-error .error-box {
       color: #515365;
       font-weight: 700; }
   .edit-account input[type="submit"].btn--orange {
-    width: 180px; }
+    width: 200px; }
   .edit-account input[type="text"],
   .edit-account input[type="password"] {
     border-radius: 5px;

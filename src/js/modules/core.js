@@ -218,6 +218,24 @@ class CORE {
 		db.set(userData);
 	}
 
+	getCurrentUserSettings() {
+		const user = firebase.auth().currentUser,
+			usersRef = firebase.database().ref("users/");
+
+		let currentUserEmail = user.email;
+		currentUserEmail = currentUserEmail.replace(/\./g, '-');
+		currentUserEmail = currentUserEmail.replace(/@/g, '+');
+
+		usersRef.on("child_added", data => {
+			const user = data.val();
+
+			if (currentUserEmail === user.userEmail) {
+				html.editAccountTemplate(user);
+			}
+
+		});
+	}
+
 	// Posts functions
 	addPostToDatabase() {
 		const postText = document.querySelector("#add-post-textarea").value;
@@ -343,20 +361,6 @@ class CORE {
 		if (userName != "") {
 			const userEmail = firebase.auth().currentUser.email;
 			const db = firebase.database().ref("user/");
-		}
-	}
-
-	changeUserEmailInDatabase() {
-		const userEmail = document.querySelector('#edit-account-user-name').value;
-		if (userEmail != "") {
-			const userEmail = firebase.auth().currentUser.email;
-		}
-	}
-
-	changeUserPasswordInDatabase() {
-		const userPassword = document.querySelector('#edit-account-user-password').value;
-		if (userPassword != "") {
-			const userEmail = firebase.auth().currentUser.email;
 		}
 	}
 
