@@ -389,6 +389,7 @@ class CORE {
 
 			const db = firebase.database().ref("users/" + userEmail + '/userName');
 			db.set(userName);
+			core.getCurrentUserProfilIntro();
 
 			alert("Name has been successfully changed.");
 		} else {
@@ -397,9 +398,9 @@ class CORE {
 	}
 
 	changeUserAboutMeInDatabase() {
-		const userAboutMe = document.querySelector('#edit-account-change-about-me').value;
+		const userAbout = document.querySelector('#edit-account-change-about-me').value;
 
-		if (userAboutMe != "") {
+		if (userAbout != "") {
 			const user = firebase.auth().currentUser;
 
 			// Conver current ucer mail to firebase friendly format
@@ -407,8 +408,9 @@ class CORE {
 			userEmail = userEmail.replace(/\./g, '-');
 			userEmail = userEmail.replace(/@/g, '+');
 
-			const db = firebase.database().ref("users/" + userEmail + '/userAboutMe');
-			db.set(userAboutMe);
+			const db = firebase.database().ref("users/" + userEmail + '/userAbout');
+			db.set(userAbout);
+			core.getCurrentUserProfilIntro();
 
 			alert("About me has been successfully changed.");
 		} else {
@@ -429,6 +431,7 @@ class CORE {
 
 			const db = firebase.database().ref("users/" + userEmail + '/userVisitedPlaces');
 			db.set(userVisitedPlaces);
+			core.getCurrentUserProfilIntro();
 
 			alert("User visited places has been successfully changed.");
 		} else {
@@ -449,6 +452,7 @@ class CORE {
 
 			const db = firebase.database().ref("users/" + userEmail + '/userWantToVist');
 			db.set(userWantToVist);
+			core.getCurrentUserProfilIntro();
 
 			alert("User want to vist me has been successfully changed.");
 		} else {
