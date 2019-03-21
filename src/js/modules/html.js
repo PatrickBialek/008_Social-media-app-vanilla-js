@@ -224,7 +224,7 @@ class HTML {
 		avatar.addEventListener("click", html.mainPageTemplate);
 	}
 
-	profileIntroTemplete() {
+	profileIntroTemplete(user) {
 		const asideProfilIntro = document.querySelector("#aside-profile-intro");
 		const templateHTML = `
 			<div class="profile-intro__row">
@@ -232,15 +232,15 @@ class HTML {
 			</div>
 			<div class="profile-intro__row">
 				<span class="profile-intro__sub-titile">About me:</span>
-				<p>My name is Patryk. I'm 25 years old and I'm enyoing of traveling and sighseeing. I love hitch-hiking, meet new people and get to know new facts about our planet!</p>
+				<p>${user.userAbout}</p>
 			</div>
 			<div class="profile-intro__row">
 				<span class="profile-intro__sub-titile">Visited places:</span>
-				<p>Poland, Hungary, Cyprus, Turkey, Lanzarote, Teneryfa, Kosovo, Serbia, Montenegro, Croatia, Albania, Slovakia, Kazakhstan, Ukraine, Germany, Italy, Israel</p>
+				<p>${user.userVisitedPlaces}</p>
 			</div>
 			<div class="profile-intro__row">
 				<span class="profile-intro__sub-titile">Want to see:</span>
-				<p>Argentina, Columbia, UK, Uzbekistan, Iran, Mongolia</p>
+				<p>${user.userWanToVisit}</p>
 			</div>
 		`;
 
@@ -401,15 +401,15 @@ class HTML {
 				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-name-btn" value="Change name">
 			</div>
 			<div class="edit-account__row">
-				<textarea id="edit-account-change-about-me" value="${user.userAbout}"></textarea>
+				<textarea id="edit-account-change-about-me" placeholder="${user.userAbout}"></textarea>
 				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-about-me-btn" value="Change about me">
 			</div>
 			<div class="edit-account__row">
-				<textarea id="edit-account-visited-places" value="${user.userVisitedPlaces}"></textarea>
+				<textarea id="edit-account-visited-places" placeholder="${user.userVisitedPlaces}"></textarea>
 				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-visited-places" value="Change visited places">
 			</div>
 			<div class="edit-account__row">
-				<textarea id="edit-account-want-to-see" value="${user.userWantToVist}"></textarea>
+				<textarea id="edit-account-want-to-see" placeholder="${user.userWantToVist}"></textarea>
 				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-want-to-see-btn" value="Change want to see">
 			</div>
 		`;
@@ -454,7 +454,7 @@ class HTML {
 			<aside class="settings" id="profile-settings"></aside>
 		`;
 
-		html.profileIntroTemplete();
+		core.getCurrentUserProfilIntro();
 		html.addPostTemplate();
 		html.settingsTemplate();
 		core.getAllPostFromDatabase();
@@ -476,7 +476,7 @@ class HTML {
 			<aside class="settings" id="profile-settings"></aside>
 		`;
 
-		html.profileIntroTemplete();
+		core.getCurrentUserProfilIntro();
 		html.addPostTemplate();
 		html.settingsTemplate();
 		core.getYourPostsFromDatabase();
@@ -493,7 +493,7 @@ class HTML {
 			<aside class="settings" id="profile-settings"></aside>
 		`;
 
-		html.profileIntroTemplete();
+		core.getCurrentUserProfilIntro();
 		html.settingsTemplate();
 		core.getCurrentUserSettings();
 	}

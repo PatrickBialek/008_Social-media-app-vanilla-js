@@ -218,6 +218,24 @@ class CORE {
 		db.set(userData);
 	}
 
+	getCurrentUserProfilIntro() {
+		const user = firebase.auth().currentUser,
+			usersRef = firebase.database().ref("users/");
+
+		let currentUserEmail = user.email;
+		currentUserEmail = currentUserEmail.replace(/\./g, '-');
+		currentUserEmail = currentUserEmail.replace(/@/g, '+');
+
+		usersRef.on("child_added", data => {
+			const user = data.val();
+
+			if (currentUserEmail === user.userEmail) {
+				html.profileIntroTemplete(user);
+			}
+
+		});
+	}
+
 	getCurrentUserSettings() {
 		const user = firebase.auth().currentUser,
 			usersRef = firebase.database().ref("users/");
