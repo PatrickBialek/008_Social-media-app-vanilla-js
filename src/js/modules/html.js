@@ -240,7 +240,7 @@ class HTML {
 			</div>
 			<div class="profile-intro__row">
 				<span class="profile-intro__sub-titile">Want to see:</span>
-				<p>${user.userWanToVisit}</p>
+				<p>${user.userWantToVist}</p>
 			</div>
 		`;
 

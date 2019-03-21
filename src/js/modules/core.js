@@ -201,8 +201,8 @@ class CORE {
 		const user = firebase.auth().currentUser,
 			userName = user.displayName;
 
+		// Conver current user mail to firebase friendly format
 		let userEmail = user.email;
-
 		userEmail = userEmail.replace(/\./g, '-');
 		userEmail = userEmail.replace(/@/g, '+');
 
@@ -222,6 +222,7 @@ class CORE {
 		const user = firebase.auth().currentUser,
 			usersRef = firebase.database().ref("users/");
 
+		// Conver current user mail to firebase friendly format
 		let currentUserEmail = user.email;
 		currentUserEmail = currentUserEmail.replace(/\./g, '-');
 		currentUserEmail = currentUserEmail.replace(/@/g, '+');
@@ -230,6 +231,7 @@ class CORE {
 			const user = data.val();
 
 			if (currentUserEmail === user.userEmail) {
+				console.log(user);
 				html.profileIntroTemplete(user);
 			}
 
@@ -240,6 +242,7 @@ class CORE {
 		const user = firebase.auth().currentUser,
 			usersRef = firebase.database().ref("users/");
 
+		// Conver current user mail to firebase friendly format
 		let currentUserEmail = user.email;
 		currentUserEmail = currentUserEmail.replace(/\./g, '-');
 		currentUserEmail = currentUserEmail.replace(/@/g, '+');
@@ -377,29 +380,79 @@ class CORE {
 		const userName = document.querySelector('#edit-account-user-name').value;
 
 		if (userName != "") {
-			const userEmail = firebase.auth().currentUser.email;
-			const db = firebase.database().ref("user/");
+			const user = firebase.auth().currentUser;
+
+			// Conver current ucer mail to firebase friendly format
+			let userEmail = user.email;
+			userEmail = userEmail.replace(/\./g, '-');
+			userEmail = userEmail.replace(/@/g, '+');
+
+			const db = firebase.database().ref("users/" + userEmail + '/userName');
+			db.set(userName);
+
+			alert("Name has been successfully changed.");
+		} else {
+			alert("You have to fill field name!");
 		}
 	}
 
 	changeUserAboutMeInDatabase() {
 		const userAboutMe = document.querySelector('#edit-account-change-about-me').value;
+
 		if (userAboutMe != "") {
-			const userEmail = firebase.auth().currentUser.email;
+			const user = firebase.auth().currentUser;
+
+			// Conver current ucer mail to firebase friendly format
+			let userEmail = user.email;
+			userEmail = userEmail.replace(/\./g, '-');
+			userEmail = userEmail.replace(/@/g, '+');
+
+			const db = firebase.database().ref("users/" + userEmail + '/userAboutMe');
+			db.set(userAboutMe);
+
+			alert("About me has been successfully changed.");
+		} else {
+			alert("You have to fill field about me!");
 		}
 	}
 
 	changeUserVisitedPlacesInDatabase() {
 		const userVisitedPlaces = document.querySelector('#edit-account-visited-places').value;
+
 		if (userVisitedPlaces != "") {
-			const userEmail = firebase.auth().currentUser.email;
+			const user = firebase.auth().currentUser;
+
+			// Conver current ucer mail to firebase friendly format
+			let userEmail = user.email;
+			userEmail = userEmail.replace(/\./g, '-');
+			userEmail = userEmail.replace(/@/g, '+');
+
+			const db = firebase.database().ref("users/" + userEmail + '/userVisitedPlaces');
+			db.set(userVisitedPlaces);
+
+			alert("User visited places has been successfully changed.");
+		} else {
+			alert("You have to fill field user visited places!");
 		}
 	}
 
 	changeUserWantToSeeInDatabase() {
-		const userWantToSee = document.querySelector('#edit-account-want-to-see').value;
-		if (userWantToSee != "") {
-			const userEmail = firebase.auth().currentUser.email;
+		const userWantToVist = document.querySelector('#edit-account-want-to-see').value;
+
+		if (userWantToVist != "") {
+			const user = firebase.auth().currentUser;
+
+			// Conver current ucer mail to firebase friendly format
+			let userEmail = user.email;
+			userEmail = userEmail.replace(/\./g, '-');
+			userEmail = userEmail.replace(/@/g, '+');
+
+			const db = firebase.database().ref("users/" + userEmail + '/userWantToVist');
+			db.set(userWantToVist);
+
+			alert("User want to vist me has been successfully changed.");
+		} else {
+			alert("You have to fill field user want to vist");
 		}
 	}
 }
