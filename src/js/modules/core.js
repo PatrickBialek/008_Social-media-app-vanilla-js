@@ -311,7 +311,7 @@ class CORE {
 			if (currentUserEmail == authorUserEmail) {
 				removePostBtnTemplate = `<li class="posts__single-control remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>`;
 			} else {
-				removePostBtnTemplate = `<li></li>`;
+				removePostBtnTemplate = ``;
 			}
 
 			if (difference <= 60000) {
