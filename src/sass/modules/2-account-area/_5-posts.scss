@@ -26,6 +26,19 @@
 		border-radius: 5px;
 		margin-bottom: 2rem;
 		position: relative;
+
+		&--preload {
+
+			& p:empty:before,
+			& p:empty:after {
+				content: "";
+				display: block;
+				height: 1rem;
+				background-color: $preloaded-content;
+				border-radius: 1rem;
+				margin-bottom: 1rem;
+			}
+		}
 	}
 
 	&__info {
@@ -36,6 +49,17 @@
 	}
 
 	&__avatar {
+		&--preload {
+			background-color: $preloaded-content;
+			border-radius: 50%;
+			height: 40px;
+			width: 40px;
+
+			& img {
+				display: none !important;
+			}
+		}
+
 		& img {
 			width: 40px;
 		}
@@ -46,6 +70,18 @@
 		position: relative;
 		padding-bottom: 20px;
 		width: 200px;
+
+		&--preload {
+			padding-bottom: 0px !important;
+
+			& h2:empty:after {
+				content: "";
+				display: block;
+				height: 1rem;
+				background-color: $preloaded-content;
+				border-radius: 1rem;
+			}
+		}
 
 		& h2 {
 			margin-bottom: 0;
@@ -67,6 +103,13 @@
 		position: absolute;
 		right: -15px;
 		top: 8px;
+
+		&--preload {
+			display: none;
+
+			& .like-post,
+				{}
+		}
 	}
 
 	&__single-control {
@@ -101,6 +144,17 @@
 
 	&__likes {
 		font-size: 1.3rem;
+
+		&--preload {
+			& span:empty:after {
+				content: "";
+				display: block;
+				height: 1rem;
+				background-color: $preloaded-content;
+				border-radius: 1rem;
+				width: 100px;
+			}
+		}
 	}
 }
 

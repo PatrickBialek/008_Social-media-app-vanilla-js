@@ -197,6 +197,79 @@ class HTML {
 
 	displaySuccess(success) {}
 
+	// Pages preloaded templates
+	profileIntroPreload() {
+		const asideProfilIntro = document.querySelector("#aside-profile-intro");
+		const templateHTML = `
+			<div class="profile-intro__row profile-intro__row--preload">
+				<h2></h2>
+			</div>
+			<div class="profile-intro__row profile-intro__row--preload">
+				<span class="profile-intro__sub-titile"></span>
+				<p></p>
+			</div>
+			<div class="profile-intro__row profile-intro__row--preload">
+				<span class="profile-intro__sub-titile"></span>
+				<p></p>
+			</div>
+			<div class="profile-intro__row profile-intro__row--preload">
+				<span class="profile-intro__sub-titile"></span>
+				<p></p>
+			</div>
+		`;
+
+		asideProfilIntro.innerHTML = templateHTML;
+	}
+
+	postPreload() {
+		const postsPeloadContainer = document.querySelector('#posts-preload-contanier'),
+			postsContainer = document.querySelector('#posts-container');
+
+		postsContainer.innerHTML = "";
+		const templateHTML = `
+			<article class="posts__single-post posts__single-post--preload">
+				<div class="posts__info">
+					<div class="posts__avatar posts__avatar--preload">
+						<img src="src/images/user-icon.png" alt="author">
+					</div>
+					<div class="posts__author posts__author--preload">
+						<h2></h2>
+						<time datetime="2008-02-14 20:00"></time>
+					</div>
+				</div>
+				<p></p>
+				<hr>
+				<div class="posts__likes posts__likes--preload"><span></span></div>
+				<div class="posts__control-panel posts__control-panel--preload">
+					<div class="remove-btn-post-container remove-btn-post-container--preload"></div>
+					<li class="posts__single-control like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
+					<li class="posts__single-control comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
+				</div>
+			</article>
+			<article class="posts__single-post posts__single-post--preload">
+				<div class="posts__info">
+					<div class="posts__avatar posts__avatar--preload">
+						<img src="src/images/user-icon.png" alt="author">
+					</div>
+					<div class="posts__author posts__author--preload">
+						<h2></h2>
+						<time datetime="2008-02-14 20:00"></time>
+					</div>
+				</div>
+				<p></p>
+				<hr>
+				<div class="posts__likes posts__likes--preload"><span></span></div>
+				<div class="posts__control-panel posts__control-panel--preload">
+					<div class="remove-btn-post-container"></div>
+					<li class="posts__single-control like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
+					<li class="posts__single-control comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
+				</div>
+			</article>
+		`;
+
+		postsPeloadContainer.innerHTML = templateHTML;
+	}
+
 	// Pages elements tempalates
 	headerTemplete(userName) {
 		const header = document.querySelector("#app-header");
@@ -208,7 +281,10 @@ class HTML {
 				<img src="src/images/app-icon.png" alt="Social media logo">
 			</div>
 			<div class="header__search-box">
-				<input type="text" placeholder="Search..">
+				<input type="text" placeholder="Find friends..">
+				<div class="header__magnifier-box">
+					<img src="src/images/search.png" alt="Magnifier">
+				</div>
 			</div>
 			<div class="header__user-icon-box">
 				<figure class="header__user-picture-box" id="header-user-avatar">
@@ -221,7 +297,7 @@ class HTML {
 		header.innerHTML = templateHTML;
 
 		const avatar = document.querySelector("#header-user-avatar");
-		avatar.addEventListener("click", html.mainPageTemplate);
+		avatar.addEventListener("click", html.yourProfilePage);
 	}
 
 	profileIntroTemplete(user) {
@@ -292,6 +368,9 @@ class HTML {
 	}
 
 	singlePostTemplate(userPostsContainer, post, formattedTime, removePostBtnTemplate) {
+		const postsPeloadContainer = document.querySelector('#posts-preload-contanier')
+		postsPeloadContainer.innerHTML = "";
+
 		const templateHTML = `
 			<article class="posts__single-post" id="${post.id}">
 				<div class="posts__info">
@@ -411,19 +490,6 @@ class HTML {
 
 		const saveUserSettingsChangesBtn = document.querySelector('#save-account-changes-btn');
 		saveUserSettingsChangesBtn.addEventListener('click', core.changeUserSettingsInDatabase);
-
-
-		/*const editAccountUserNameBtn = document.querySelector('#edit-account-user-name-btn');
-		editAccountUserNameBtn.addEventListener('click', core.changeUserNameInDatabase);
-
-		const editAccountUserAboutMeBtn = document.querySelector('#edit-account-user-about-me-btn');
-		editAccountUserAboutMeBtn.addEventListener('click', core.changeUserAboutMeInDatabase);
-
-		const editAccountUserVisitedPlaces = document.querySelector('#edit-account-user-visited-places');
-		editAccountUserVisitedPlaces.addEventListener('click', core.changeUserVisitedPlacesInDatabase);
-
-		const editAccountUserWantToSeeBtn = document.querySelector('#edit-account-user-want-to-see-btn');
-		editAccountUserWantToSeeBtn.addEventListener('click', core.changeUserWantToSeeInDatabase);*/
 	}
 
 	userSingedInTemplete(userName) {
@@ -445,12 +511,18 @@ class HTML {
 
 			<div class="posts" id="posts-section">
 				<div class="add-post" id="add-post-container"></div>
+				<section class="posts__container" id="posts-preload-contanier"></section>
 				<section class="posts__container" id="posts-container"></section>
 			</div>
 
 			<aside class="settings" id="profile-settings"></aside>
 		`;
 
+		// Add preloaded content for better UI/UX 
+		html.profileIntroPreload();
+		html.postPreload();
+
+		// Get and set proper content
 		core.getCurrentUserProfilIntro();
 		html.addPostTemplate();
 		html.settingsTemplate();

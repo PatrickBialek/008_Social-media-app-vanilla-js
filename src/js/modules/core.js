@@ -11,7 +11,6 @@ import {
 	appBody
 } from "../app";
 
-
 class CORE {
 	initializeFirebase() {
 		const config = {
@@ -30,6 +29,7 @@ class CORE {
 	checkIfUserIsLogIn() {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
+				// html.preloadedContent();
 				const userName = user.displayName;
 				html.userSingedInTemplete(userName);
 				html.mainPageTemplate();
@@ -93,8 +93,7 @@ class CORE {
 
 			setTimeout(() => {
 				core.createUserDatabase();
-			}, 2000)
-
+			}, 2000);
 		} else {
 			const error = "You have to fill all fields";
 			html.displayError(error);
@@ -203,8 +202,8 @@ class CORE {
 
 		// Conver current user mail to firebase friendly format
 		let userEmail = user.email;
-		userEmail = userEmail.replace(/\./g, '-');
-		userEmail = userEmail.replace(/@/g, '+');
+		userEmail = userEmail.replace(/\./g, "-");
+		userEmail = userEmail.replace(/@/g, "+");
 
 		const db = firebase.database().ref("users/" + userEmail);
 		const userData = {
@@ -213,7 +212,7 @@ class CORE {
 			userAbout: "Fill this section in account settings...",
 			userVisitedPlaces: "Fill this section in account settings...",
 			userWantToVist: "Fill this section in account settings..."
-		}
+		};
 
 		db.set(userData);
 	}
@@ -224,8 +223,8 @@ class CORE {
 
 		// Conver current user mail to firebase friendly format
 		let currentUserEmail = user.email;
-		currentUserEmail = currentUserEmail.replace(/\./g, '-');
-		currentUserEmail = currentUserEmail.replace(/@/g, '+');
+		currentUserEmail = currentUserEmail.replace(/\./g, "-");
+		currentUserEmail = currentUserEmail.replace(/@/g, "+");
 
 		usersRef.on("child_added", data => {
 			const user = data.val();
@@ -234,7 +233,6 @@ class CORE {
 				console.log(user);
 				html.profileIntroTemplete(user);
 			}
-
 		});
 	}
 
@@ -244,8 +242,8 @@ class CORE {
 
 		// Conver current user mail to firebase friendly format
 		let currentUserEmail = user.email;
-		currentUserEmail = currentUserEmail.replace(/\./g, '-');
-		currentUserEmail = currentUserEmail.replace(/@/g, '+');
+		currentUserEmail = currentUserEmail.replace(/\./g, "-");
+		currentUserEmail = currentUserEmail.replace(/@/g, "+");
 
 		usersRef.on("child_added", data => {
 			const user = data.val();
@@ -253,7 +251,6 @@ class CORE {
 			if (currentUserEmail === user.userEmail) {
 				html.editAccountTemplate(user);
 			}
-
 		});
 	}
 
@@ -298,6 +295,8 @@ class CORE {
 		const postsRef = firebase.database().ref("posts/"),
 			userPostsContainer = document.querySelector("#posts-container");
 
+		userPostsContainer.innerHTML = "";
+
 		// Array
 		let allPosts = [];
 
@@ -333,14 +332,12 @@ class CORE {
 
 			html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
 		});
-
-		console.log(allPosts);
 	}
 
 	getYourPostsFromDatabase() {
 		const postsRef = firebase.database().ref("posts/"),
 			userPostsContainer = document.querySelector("#your-posts-container"),
-			userEmail = (firebase.auth().currentUser.email);
+			userEmail = firebase.auth().currentUser.email;
 
 		if (userEmail) {
 			postsRef.on("child_added", data => {
@@ -373,9 +370,9 @@ class CORE {
 	}
 
 	likePost(e) {
-		const postTemplateHTML = e.target.closest('.posts__single-post'),
+		const postTemplateHTML = e.target.closest(".posts__single-post"),
 			id = Number(postTemplateHTML.id),
-			post = firebase.database().ref('posts/' + id + '/likes'),
+			post = firebase.database().ref("posts/" + id + "/likes"),
 			userName = firebase.auth().currentUser.displayName;
 
 		post.push(userName);
@@ -384,18 +381,18 @@ class CORE {
 
 	// User setting functions
 	changeUserSettingsInDatabase() {
-		const userName = document.querySelector('#edit-account-user-name').value,
-			userAbout = document.querySelector('#edit-account-change-about-me').value,
-			userVisitedPlaces = document.querySelector('#edit-account-visited-places').value,
-			userWantToVist = document.querySelector('#edit-account-want-to-see').value;
+		const userName = document.querySelector("#edit-account-user-name").value,
+			userAbout = document.querySelector("#edit-account-change-about-me").value,
+			userVisitedPlaces = document.querySelector("#edit-account-visited-places").value,
+			userWantToVist = document.querySelector("#edit-account-want-to-see").value;
 
 		if (userName != "" && userAbout != "" && userVisitedPlaces != "" && userWantToVist != "") {
 			const user = firebase.auth().currentUser;
 
 			// Conver current ucer mail to firebase friendly format
 			let userEmail = user.email;
-			userEmail = userEmail.replace(/\./g, '-');
-			userEmail = userEmail.replace(/@/g, '+');
+			userEmail = userEmail.replace(/\./g, "-");
+			userEmail = userEmail.replace(/@/g, "+");
 
 			const userSettings = {
 				userAbout: userAbout,
@@ -403,7 +400,7 @@ class CORE {
 				userName: userName,
 				userVisitedPlaces: userVisitedPlaces,
 				userWantToVist: userWantToVist
-			}
+			};
 
 			const db = firebase.database().ref("users/" + userEmail);
 			db.set(userSettings);
