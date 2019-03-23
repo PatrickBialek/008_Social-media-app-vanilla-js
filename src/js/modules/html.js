@@ -539,12 +539,18 @@ class HTML {
 				<div class="posts__titile">
 					<h2>Your posts:</2>
 				</div>
-				<section class="posts__container" id="your-posts-container"></section>
+				<section class="posts__container" id="posts-preload-contanier"></section>
+				<section class="posts__container" id="posts-container"></section>
 			</div>
 
 			<aside class="settings" id="profile-settings"></aside>
 		`;
 
+		// Add preloaded content for better UI/UX 
+		html.profileIntroPreload();
+		html.postPreload();
+
+		// Get and set proper content
 		core.getCurrentUserProfilIntro();
 		html.addPostTemplate();
 		html.settingsTemplate();

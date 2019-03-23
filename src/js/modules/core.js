@@ -295,8 +295,6 @@ class CORE {
 		const postsRef = firebase.database().ref("posts/"),
 			userPostsContainer = document.querySelector("#posts-container");
 
-		userPostsContainer.innerHTML = "";
-
 		// Array
 		let allPosts = [];
 
@@ -336,7 +334,7 @@ class CORE {
 
 	getYourPostsFromDatabase() {
 		const postsRef = firebase.database().ref("posts/"),
-			userPostsContainer = document.querySelector("#your-posts-container"),
+			userPostsContainer = document.querySelector("#posts-container"),
 			userEmail = firebase.auth().currentUser.email;
 
 		if (userEmail) {
