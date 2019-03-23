@@ -398,25 +398,22 @@ class HTML {
 			</div>
 			<div class="edit-account__row">
 				<input type="text" id="edit-account-user-name" value="${user.userName}"> 
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-name-btn" value="Change name">
+				<textarea class="margin-top-small" id="edit-account-change-about-me">${user.userAbout}</textarea>
+				<textarea class="margin-top-small" id="edit-account-visited-places">${user.userVisitedPlaces}</textarea>
+				<textarea class="margin-top-small" id="edit-account-want-to-see">${user.userWantToVist}</textarea>
 			</div>
 			<div class="edit-account__row">
-				<textarea id="edit-account-change-about-me" placeholder="${user.userAbout}"></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-about-me-btn" value="Change about me">
-			</div>
-			<div class="edit-account__row">
-				<textarea id="edit-account-visited-places" placeholder="${user.userVisitedPlaces}"></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-visited-places" value="Change visited places">
-			</div>
-			<div class="edit-account__row">
-				<textarea id="edit-account-want-to-see" placeholder="${user.userWantToVist}"></textarea>
-				<input class="btn btn--orange margin-top-small" type="submit" id="edit-account-user-want-to-see-btn" value="Change want to see">
+				<input class="btn btn--orange margin-top-small" type="submit" id="save-account-changes-btn" value="Save Changes">
 			</div>
 		`;
 
 		settingsTemplate.innerHTML = templateHTML;
 
-		const editAccountUserNameBtn = document.querySelector('#edit-account-user-name-btn');
+		const saveUserSettingsChangesBtn = document.querySelector('#save-account-changes-btn');
+		saveUserSettingsChangesBtn.addEventListener('click', core.changeUserSettingsInDatabase);
+
+
+		/*const editAccountUserNameBtn = document.querySelector('#edit-account-user-name-btn');
 		editAccountUserNameBtn.addEventListener('click', core.changeUserNameInDatabase);
 
 		const editAccountUserAboutMeBtn = document.querySelector('#edit-account-user-about-me-btn');
@@ -426,7 +423,7 @@ class HTML {
 		editAccountUserVisitedPlaces.addEventListener('click', core.changeUserVisitedPlacesInDatabase);
 
 		const editAccountUserWantToSeeBtn = document.querySelector('#edit-account-user-want-to-see-btn');
-		editAccountUserWantToSeeBtn.addEventListener('click', core.changeUserWantToSeeInDatabase);
+		editAccountUserWantToSeeBtn.addEventListener('click', core.changeUserWantToSeeInDatabase);*/
 	}
 
 	userSingedInTemplete(userName) {

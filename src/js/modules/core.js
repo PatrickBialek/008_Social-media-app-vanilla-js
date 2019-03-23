@@ -298,6 +298,9 @@ class CORE {
 		const postsRef = firebase.database().ref("posts/"),
 			userPostsContainer = document.querySelector("#posts-container");
 
+		// Array
+		let allPosts = [];
+
 		postsRef.on("child_added", data => {
 			const post = data.val(),
 				postTime = post.timestamp,
@@ -305,6 +308,8 @@ class CORE {
 				difference = currentTime - postTime,
 				currentUserEmail = firebase.auth().currentUser.email,
 				authorUserEmail = post.userEmail;
+
+			allPosts.push(post);
 
 			let removePostBtnTemplate, postPublishDate;
 
@@ -328,6 +333,8 @@ class CORE {
 
 			html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
 		});
+
+		console.log(allPosts);
 	}
 
 	getYourPostsFromDatabase() {
@@ -376,10 +383,13 @@ class CORE {
 	}
 
 	// User setting functions
-	changeUserNameInDatabase() {
-		const userName = document.querySelector('#edit-account-user-name').value;
+	changeUserSettingsInDatabase() {
+		const userName = document.querySelector('#edit-account-user-name').value,
+			userAbout = document.querySelector('#edit-account-change-about-me').value,
+			userVisitedPlaces = document.querySelector('#edit-account-visited-places').value,
+			userWantToVist = document.querySelector('#edit-account-want-to-see').value;
 
-		if (userName != "") {
+		if (userName != "" && userAbout != "" && userVisitedPlaces != "" && userWantToVist != "") {
 			const user = firebase.auth().currentUser;
 
 			// Conver current ucer mail to firebase friendly format
@@ -387,76 +397,21 @@ class CORE {
 			userEmail = userEmail.replace(/\./g, '-');
 			userEmail = userEmail.replace(/@/g, '+');
 
-			const db = firebase.database().ref("users/" + userEmail + '/userName');
-			db.set(userName);
+			const userSettings = {
+				userAbout: userAbout,
+				userEmail: userEmail,
+				userName: userName,
+				userVisitedPlaces: userVisitedPlaces,
+				userWantToVist: userWantToVist
+			}
+
+			const db = firebase.database().ref("users/" + userEmail);
+			db.set(userSettings);
 			core.getCurrentUserProfilIntro();
 
-			alert("Name has been successfully changed.");
+			alert("Your account settings has been successfully changed! :)");
 		} else {
-			alert("You have to fill field name!");
-		}
-	}
-
-	changeUserAboutMeInDatabase() {
-		const userAbout = document.querySelector('#edit-account-change-about-me').value;
-
-		if (userAbout != "") {
-			const user = firebase.auth().currentUser;
-
-			// Conver current ucer mail to firebase friendly format
-			let userEmail = user.email;
-			userEmail = userEmail.replace(/\./g, '-');
-			userEmail = userEmail.replace(/@/g, '+');
-
-			const db = firebase.database().ref("users/" + userEmail + '/userAbout');
-			db.set(userAbout);
-			core.getCurrentUserProfilIntro();
-
-			alert("About me has been successfully changed.");
-		} else {
-			alert("You have to fill field about me!");
-		}
-	}
-
-	changeUserVisitedPlacesInDatabase() {
-		const userVisitedPlaces = document.querySelector('#edit-account-visited-places').value;
-
-		if (userVisitedPlaces != "") {
-			const user = firebase.auth().currentUser;
-
-			// Conver current ucer mail to firebase friendly format
-			let userEmail = user.email;
-			userEmail = userEmail.replace(/\./g, '-');
-			userEmail = userEmail.replace(/@/g, '+');
-
-			const db = firebase.database().ref("users/" + userEmail + '/userVisitedPlaces');
-			db.set(userVisitedPlaces);
-			core.getCurrentUserProfilIntro();
-
-			alert("User visited places has been successfully changed.");
-		} else {
-			alert("You have to fill field user visited places!");
-		}
-	}
-
-	changeUserWantToSeeInDatabase() {
-		const userWantToVist = document.querySelector('#edit-account-want-to-see').value;
-
-		if (userWantToVist != "") {
-			const user = firebase.auth().currentUser;
-
-			// Conver current ucer mail to firebase friendly format
-			let userEmail = user.email;
-			userEmail = userEmail.replace(/\./g, '-');
-			userEmail = userEmail.replace(/@/g, '+');
-
-			const db = firebase.database().ref("users/" + userEmail + '/userWantToVist');
-			db.set(userWantToVist);
-			core.getCurrentUserProfilIntro();
-
-			alert("User want to vist me has been successfully changed.");
-		} else {
-			alert("You have to fill field user want to vist");
+			alert("You cannot leave empty field!");
 		}
 	}
 }
