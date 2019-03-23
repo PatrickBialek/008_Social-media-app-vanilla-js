@@ -45,7 +45,6 @@
 		display: flex;
 		justify-content: flex-start;
 		margin-bottom: 1.25rem;
-		align-items: center;
 	}
 
 	&__avatar {
@@ -62,14 +61,18 @@
 
 		& img {
 			width: 40px;
+			cursor: pointer;
+			cursor: pointer;
+			border-radius: 50%;
+			display: block;
 		}
 	}
 
 	&__author {
 		margin-left: 1.4rem;
 		position: relative;
-		padding-bottom: 20px;
-		width: 200px;
+		display: flex;
+		flex-direction: column;
 
 		&--preload {
 			padding-bottom: 0px !important;
@@ -87,6 +90,7 @@
 			margin-bottom: 0;
 			color: $black;
 			font-weight: 700;
+			cursor: pointer;
 		}
 
 		& time {
@@ -95,7 +99,6 @@
 			line-height: 1.5;
 			color: #888da8;
 			transform: translateY(-5px);
-			position: absolute;
 		}
 	}
 
@@ -107,8 +110,7 @@
 		&--preload {
 			display: none;
 
-			& .like-post,
-				{}
+			& .like-post {}
 		}
 	}
 

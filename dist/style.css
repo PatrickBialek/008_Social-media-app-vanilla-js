@@ -447,8 +447,7 @@ body.add-error .error-box {
   .posts__info {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 1.25rem;
-    align-items: center; }
+    margin-bottom: 1.25rem; }
   .posts__avatar--preload {
     background-color: #c9c9c9;
     border-radius: 50%;
@@ -457,12 +456,16 @@ body.add-error .error-box {
     .posts__avatar--preload img {
       display: none !important; }
   .posts__avatar img {
-    width: 40px; }
+    width: 40px;
+    cursor: pointer;
+    cursor: pointer;
+    border-radius: 50%;
+    display: block; }
   .posts__author {
     margin-left: 1.4rem;
     position: relative;
-    padding-bottom: 20px;
-    width: 200px; }
+    display: flex;
+    flex-direction: column; }
     .posts__author--preload {
       padding-bottom: 0px !important; }
       .posts__author--preload h2:empty:after {
@@ -474,14 +477,14 @@ body.add-error .error-box {
     .posts__author h2 {
       margin-bottom: 0;
       color: #515365;
-      font-weight: 700; }
+      font-weight: 700;
+      cursor: pointer; }
     .posts__author time {
       font-size: 1.35rem;
       font-weight: 400;
       line-height: 1.5;
       color: #888da8;
-      transform: translateY(-5px);
-      position: absolute; }
+      transform: translateY(-5px); }
   .posts__control-panel {
     position: absolute;
     right: -15px;

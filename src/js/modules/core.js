@@ -230,7 +230,6 @@ class CORE {
 			const user = data.val();
 
 			if (currentUserEmail === user.userEmail) {
-				console.log(user);
 				html.profileIntroTemplete(user);
 			}
 		});
@@ -365,6 +364,69 @@ class CORE {
 				}
 			});
 		}
+	}
+
+	getChosenUserPostsFromDatabase(user, email) {
+		const postsRef = firebase.database().ref("posts/");
+
+		// Convert from firebase friendly format to primary format
+		email = email.replace(/\-/g, ".");
+		email = email.replace(/\+/g, "@");
+
+		console.log(email);
+
+		postsRef.on("child_added", data => {
+			const post = data.val();
+
+			if (email === post.userEmail) {
+				const postTime = post.timestamp,
+					currentTime = Date.now(),
+					difference = currentTime - postTime,
+					removePostBtnTemplate = `<li class="posts__single-control remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>`;
+
+				let postPublishDate;
+
+				if (difference <= 60000) {
+					postPublishDate = "about minute ago";
+				} else if (difference > 60000 && difference < 3600000) {
+					postPublishDate = Math.floor(difference / 60000) + " minutes ago";
+				} else if (difference < 86400000) {
+					postPublishDate = Math.floor(difference / 3600000) + " hours ago";
+				} else if (difference > 86400000 && difference < 604800000) {
+					postPublishDate = Math.floor(difference / 86400000) + " days ago";
+				} else {
+					postPublishDate = Math.floor(difference / 60000) + " minutes ago";
+				}
+
+				html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
+			}
+		});
+	}
+
+	findAuthorProfile(e) {
+		const postTemplateHTML = e.target.closest(".posts__single-post"),
+			id = Number(postTemplateHTML.id);
+
+		firebase.database().ref("posts/" + id)
+			.once('value')
+			.then(function (snapshot) {
+				let email = snapshot.child("/userEmail").val();
+
+				// Conver current user mail to firebase friendly format
+				email = email.replace(/\./g, "-");
+				email = email.replace(/@/g, "+");
+
+				const usersRef = firebase.database().ref("users/");
+
+				usersRef.on("child_added", data => {
+					const user = data.val();
+
+					if (email === user.userEmail) {
+						html.userProfilPage(user);
+						core.getChosenUserPostsFromDatabase(user, email);
+					}
+				});
+			});
 	}
 
 	likePost(e) {

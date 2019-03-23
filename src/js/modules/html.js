@@ -343,30 +343,6 @@ class HTML {
 		textArea.value = "";
 	}
 
-	addPostOnWall(post) {
-		const postsContainer = document.querySelector("#posts-container");
-		const templateHTML = `
-			<article class="posts__single-post">
-				<div class="posts__info">
-					<div class="posts__avatar">
-						<img src="src/images/user-icon.png" alt="author">
-					</div>
-					<div class="posts__author">
-						<h2>${post.userName}</h2>
-						<time datetime="2008-02-14 20:00">${post.timestamp}</time>
-					</div>
-				</div>
-				<p>${post.postText}</p>
-				<div class="posts__control-panel">
-					<li class="posts__single-control remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>
-					<li class="posts__single-control like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
-					<li class="posts__single-control comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
-				</div>
-			</article>`;
-
-		postsContainer.innerHTML += templateHTML;
-	}
-
 	singlePostTemplate(userPostsContainer, post, formattedTime, removePostBtnTemplate) {
 		const postsPeloadContainer = document.querySelector('#posts-preload-contanier')
 		postsPeloadContainer.innerHTML = "";
@@ -402,7 +378,13 @@ class HTML {
 		likePostBtns.forEach(likePostBtn => likePostBtn.addEventListener('click', core.likePost));
 
 		const whoLikesContainer = document.querySelector('.posts__control-panel');
-		html.whoLikesThisPost(post.likes, whoLikesContainer)
+		html.whoLikesThisPost(post.likes, whoLikesContainer);
+
+		const authorsAvatars = Array.from(document.querySelectorAll('.posts__avatar'));
+		authorsAvatars.forEach(authorsAvatar => authorsAvatar.addEventListener('click', core.findAuthorProfile));
+
+		const authorsNames = Array.from(document.querySelectorAll('.posts__author h2'));
+		authorsNames.forEach(authorName => authorName.addEventListener('click', core.findAuthorProfile));
 	}
 
 	removePostTemplate(e) {
@@ -555,6 +537,25 @@ class HTML {
 		html.addPostTemplate();
 		html.settingsTemplate();
 		core.getYourPostsFromDatabase();
+	}
+
+	userProfilPage(user) {
+		const main = document.querySelector("#app-main");
+		main.innerHTML = `
+			<aside class="profile-intro" id="aside-profile-intro"></aside>
+
+			<div class="posts" id="posts-section">
+				<div class="posts__titile">
+					<h2>${user.userName}</2>
+				</div>
+				<section class="posts__container" id="posts-container"></section>
+			</div>
+
+			<aside class="settings" id="profile-settings"></aside>
+		`;
+
+		html.profileIntroTemplete(user);
+		html.settingsTemplate();
 	}
 
 
