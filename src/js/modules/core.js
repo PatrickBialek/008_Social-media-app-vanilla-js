@@ -335,6 +335,9 @@ class CORE {
 			userPostsContainer = document.querySelector("#posts-container"),
 			userEmail = firebase.auth().currentUser.email;
 
+		// Clean walll from posts
+		html.cleanYourProfileWall();
+
 		if (userEmail) {
 			postsRef.on("child_added", data => {
 				const post = data.val();

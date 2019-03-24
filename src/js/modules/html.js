@@ -513,6 +513,11 @@ class HTML {
 		core.getAllPostFromDatabase();
 	}
 
+	cleanYourProfileWall() {
+		const postsContainer = document.querySelector('#posts-container');
+		postsContainer.innerHTML = "";
+	}
+
 	yourProfilePage() {
 		const main = document.querySelector("#app-main");
 		main.innerHTML = `
@@ -550,6 +555,8 @@ class HTML {
 				<div class="posts__titile">
 					<h2>${user.userName}</2>
 				</div>
+
+				<div class="add-post" id="add-post-container"></div>
 				<section class="posts__container" id="posts-preload-contanier"></section>
 				<section class="posts__container" id="posts-container"></section>
 			</div>
@@ -560,9 +567,6 @@ class HTML {
 		html.profileIntroPreload();
 		html.postPreload();
 		html.settingsTemplate();
-
-		/*html.profileIntroTemplete(user);
-		html.settingsTemplate();*/
 	}
 
 
