@@ -145,8 +145,6 @@ class CORE {
 
 				errors.push(errorMessage);
 			});
-
-		core.createUserDatabase();
 	}
 
 	continueWithGoogle() {
@@ -178,8 +176,6 @@ class CORE {
 
 				errors.push(errorMessage);
 			});
-
-		core.createUserDatabase();
 	}
 
 	signOut() {
