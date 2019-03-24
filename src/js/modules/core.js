@@ -1,15 +1,9 @@
 // This import loads the firebase namespace.
-import firebase, {
-	auth
-} from "firebase/app";
+import firebase, { auth } from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-import {
-	core,
-	html,
-	appBody
-} from "../app";
+import { core, html, appBody } from "../app";
 
 class CORE {
 	initializeFirebase() {
@@ -177,7 +171,9 @@ class CORE {
 				errors.push(errorMessage);
 			});
 
-		// I have to add default user settings content function for google auth 
+		core.createUserDatabase();
+
+		// I have to add default user settings content function for google auth
 	}
 
 	signOut() {
@@ -406,9 +402,11 @@ class CORE {
 		const postTemplateHTML = e.target.closest(".posts__single-post"),
 			id = Number(postTemplateHTML.id);
 
-		firebase.database().ref("posts/" + id)
-			.once('value')
-			.then(function (snapshot) {
+		firebase
+			.database()
+			.ref("posts/" + id)
+			.once("value")
+			.then(function(snapshot) {
 				const currentUser = firebase.auth().currentUser;
 				let authorPostEmail = snapshot.child("/userEmail").val(),
 					currentUserEmail = currentUser.email;
@@ -420,7 +418,6 @@ class CORE {
 				// Convert current user mail to email format
 				currentUserEmail = currentUserEmail.replace(/\./g, "-");
 				currentUserEmail = currentUserEmail.replace(/@/g, "+");
-
 
 				const usersRef = firebase.database().ref("users/");
 
@@ -482,6 +479,4 @@ class CORE {
 	}
 }
 
-export {
-	CORE
-};
+export { CORE };
