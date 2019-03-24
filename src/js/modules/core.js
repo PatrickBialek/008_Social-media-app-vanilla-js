@@ -176,6 +176,8 @@ class CORE {
 
 				errors.push(errorMessage);
 			});
+
+		// I have to add default user settings content function for google auth 
 	}
 
 	signOut() {
