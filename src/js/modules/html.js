@@ -548,14 +548,19 @@ class HTML {
 				<div class="posts__titile">
 					<h2>${user.userName}</2>
 				</div>
+				<section class="posts__container" id="posts-preload-contanier"></section>
 				<section class="posts__container" id="posts-container"></section>
 			</div>
 
 			<aside class="settings" id="profile-settings"></aside>
 		`;
 
-		html.profileIntroTemplete(user);
+		html.profileIntroPreload();
+		html.postPreload();
 		html.settingsTemplate();
+
+		/*html.profileIntroTemplete(user);
+		html.settingsTemplate();*/
 	}
 
 
@@ -573,8 +578,6 @@ class HTML {
 		html.settingsTemplate();
 		core.getCurrentUserSettings();
 	}
-
-
 
 	errorTemplate() {
 		const templateHTML = ``;

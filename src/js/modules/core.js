@@ -29,7 +29,6 @@ class CORE {
 	checkIfUserIsLogIn() {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
-				// html.preloadedContent();
 				const userName = user.displayName;
 				html.userSingedInTemplete(userName);
 				html.mainPageTemplate();
@@ -221,7 +220,7 @@ class CORE {
 		const user = firebase.auth().currentUser,
 			usersRef = firebase.database().ref("users/");
 
-		// Conver current user mail to firebase friendly format
+		// Convert current user mail to firebase friendly format
 		let currentUserEmail = user.email;
 		currentUserEmail = currentUserEmail.replace(/\./g, "-");
 		currentUserEmail = currentUserEmail.replace(/@/g, "+");
@@ -239,7 +238,7 @@ class CORE {
 		const user = firebase.auth().currentUser,
 			usersRef = firebase.database().ref("users/");
 
-		// Conver current user mail to firebase friendly format
+		// Convert current user mail to firebase friendly format
 		let currentUserEmail = user.email;
 		currentUserEmail = currentUserEmail.replace(/\./g, "-");
 		currentUserEmail = currentUserEmail.replace(/@/g, "+");
@@ -373,8 +372,6 @@ class CORE {
 		email = email.replace(/\-/g, ".");
 		email = email.replace(/\+/g, "@");
 
-		console.log(email);
-
 		postsRef.on("child_added", data => {
 			const post = data.val();
 
@@ -382,7 +379,8 @@ class CORE {
 				const postTime = post.timestamp,
 					currentTime = Date.now(),
 					difference = currentTime - postTime,
-					removePostBtnTemplate = `<li class="posts__single-control remove-post"><img src="src/images/svg/remove-btn.svg" alt="Remove icon"></li>`;
+					removePostBtnTemplate = "",
+					userPostsContainer = document.querySelector("#posts-container");
 
 				let postPublishDate;
 
@@ -410,20 +408,31 @@ class CORE {
 		firebase.database().ref("posts/" + id)
 			.once('value')
 			.then(function (snapshot) {
-				let email = snapshot.child("/userEmail").val();
+				const currentUser = currentUserEmail = firebase.auth().currentUser;
+				let authorPostEmail = snapshot.child("/userEmail").val(),
+					currentUserEmail = currentUser.email;
 
-				// Conver current user mail to firebase friendly format
-				email = email.replace(/\./g, "-");
-				email = email.replace(/@/g, "+");
+				// Convert mail to firebase friendly format
+				authorPostEmail = authorPostEmail.replace(/\./g, "-");
+				authorPostEmail = authorPostEmail.replace(/@/g, "+");
+
+				// Convert current user mail to email format
+				currentUserEmail = currentUserEmail.replace(/\./g, "-");
+				currentUserEmail = currentUserEmail.replace(/@/g, "+");
+
 
 				const usersRef = firebase.database().ref("users/");
 
 				usersRef.on("child_added", data => {
 					const user = data.val();
 
-					if (email === user.userEmail) {
+					if (authorPostEmail === currentUserEmail) {
+						html.profileIntroTemplete(user);
+
+					} else if (authorPostEmail === user.userEmail) {
 						html.userProfilPage(user);
-						core.getChosenUserPostsFromDatabase(user, email);
+						core.getChosenUserPostsFromDatabase(user, authorPostEmail);
+						html.profileIntroTemplete(user);
 					}
 				});
 			});
