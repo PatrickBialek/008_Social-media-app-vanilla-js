@@ -408,7 +408,7 @@ class CORE {
 		firebase.database().ref("posts/" + id)
 			.once('value')
 			.then(function (snapshot) {
-				const currentUser = currentUserEmail = firebase.auth().currentUser;
+				const currentUser = firebase.auth().currentUser;
 				let authorPostEmail = snapshot.child("/userEmail").val(),
 					currentUserEmail = currentUser.email;
 
@@ -427,8 +427,7 @@ class CORE {
 					const user = data.val();
 
 					if (authorPostEmail === currentUserEmail) {
-						html.profileIntroTemplete(user);
-
+						html.yourProfilePage();
 					} else if (authorPostEmail === user.userEmail) {
 						html.userProfilPage(user);
 						core.getChosenUserPostsFromDatabase(user, authorPostEmail);

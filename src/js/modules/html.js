@@ -325,6 +325,8 @@ class HTML {
 
 	addPostTemplate() {
 		const addPostContainer = document.querySelector("#add-post-container");
+		addPostContainer.innerHTML = "";
+
 		const templateHTML = `
 			<div class="add-post__content">
 				<textarea class="add-post__text-area" id="add-post-textarea" placeholder="Your post..."></textarea>
