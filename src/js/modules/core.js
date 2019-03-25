@@ -1,9 +1,15 @@
 // This import loads the firebase namespace.
-import firebase, { auth } from "firebase/app";
+import firebase, {
+	auth
+} from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-import { core, html, appBody } from "../app";
+import {
+	core,
+	html,
+	appBody
+} from "../app";
 
 class CORE {
 	initializeFirebase() {
@@ -171,7 +177,11 @@ class CORE {
 				errors.push(errorMessage);
 			});
 
-		core.createUserDatabase();
+		//core.createUserDatabase();
+
+		const user = firebase.auth().currentUser;
+
+		console.log(user);
 
 		// I have to add default user settings content function for google auth
 	}
@@ -192,6 +202,8 @@ class CORE {
 	createUserDatabase() {
 		const user = firebase.auth().currentUser,
 			userName = user.displayName;
+
+		console.log(userName);
 
 		// Conver current user mail to firebase friendly format
 		let userEmail = user.email;
@@ -406,7 +418,7 @@ class CORE {
 			.database()
 			.ref("posts/" + id)
 			.once("value")
-			.then(function(snapshot) {
+			.then(function (snapshot) {
 				const currentUser = firebase.auth().currentUser;
 				let authorPostEmail = snapshot.child("/userEmail").val(),
 					currentUserEmail = currentUser.email;
@@ -479,4 +491,6 @@ class CORE {
 	}
 }
 
-export { CORE };
+export {
+	CORE
+};
