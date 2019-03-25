@@ -364,7 +364,7 @@ class CORE {
 
 					html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
 				} else {
-					html.cleanYourProfileWall();
+					html.cleanPostPreloadContainer();
 				}
 			});
 		}

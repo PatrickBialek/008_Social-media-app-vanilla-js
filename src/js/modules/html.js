@@ -518,6 +518,11 @@ class HTML {
 		postsContainer.innerHTML = "";
 	}
 
+	cleanPostPreloadContainer() {
+		const preloadContainer = document.querySelector('#posts-preload-contanier');
+		preloadContainer.innerHTML = "";
+	}
+
 	yourProfilePage() {
 		const main = document.querySelector("#app-main");
 		main.innerHTML = `
