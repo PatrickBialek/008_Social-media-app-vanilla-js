@@ -162,6 +162,8 @@ class CORE {
 
 				console.log(token);
 				console.log(user);
+
+				core.createUserDatabase();
 			})
 			.catch(error => {
 				const errorCode = error.code,
@@ -176,14 +178,6 @@ class CORE {
 
 				errors.push(errorMessage);
 			});
-
-		//core.createUserDatabase();
-
-		const user = firebase.auth().currentUser;
-
-		console.log(user);
-
-		// I have to add default user settings content function for google auth
 	}
 
 	signOut() {
