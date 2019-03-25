@@ -2,32 +2,32 @@
 	"short_name": "My App",
 	"name": "My social media app",
 	"icons": [{
-			"src": "/src/images/pwa/app-icon-32.png",
+			"src": "src/images/pwa/app-icon-32.png",
 			"type": "image/png",
 			"sizes": "32x32"
 		},
 		{
-			"src": "/src/images/pwa/app-icon-64.png",
+			"src": "src/images/pwa/app-icon-64.png",
 			"type": "image/png",
 			"sizes": "64x64"
 		},
 		{
-			"src": "/src/images/pwa/app-icon-128.png",
+			"src": "src/images/pwa/app-icon-128.png",
 			"type": "image/png",
 			"sizes": "128x128"
 		},
 		{
-			"src": "/src/images/pwa/app-icon-264.png",
+			"src": "src/images/pwa/app-icon-264.png",
 			"type": "image/png",
 			"sizes": "264x264"
 		},
 		{
-			"src": "/src/images/pwa/app-icon-512.png",
+			"src": "src/images/pwa/app-icon-512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}
 	],
-	"start_url": "/",
+	"start_url": "/008_PWA-social-media-app/",
 	"background_color": "#ff5e3a",
 	"display": "standalone",
 	"scope": "",
