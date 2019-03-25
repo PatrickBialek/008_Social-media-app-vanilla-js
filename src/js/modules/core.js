@@ -364,6 +364,7 @@ class CORE {
 
 					html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
 				} else {
+					console.log('clean preload container');
 					html.cleanPostPreloadContainer();
 				}
 			});

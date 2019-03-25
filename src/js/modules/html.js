@@ -520,6 +520,7 @@ class HTML {
 
 	cleanPostPreloadContainer() {
 		const preloadContainer = document.querySelector('#posts-preload-contanier');
+		console.log(preloadContainer);
 		preloadContainer.innerHTML = "";
 	}
 
