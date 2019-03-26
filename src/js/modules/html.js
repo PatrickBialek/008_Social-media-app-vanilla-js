@@ -445,6 +445,9 @@ class HTML {
 		const settingsHomePage = document.querySelector('#settings-home-page');
 		settingsHomePage.addEventListener('click', html.mainPageTemplate);
 
+		const settingsYourFriends = document.querySelector('#settings-your-fiends-page');
+		settingsYourFriends.addEventListener('click', core.getYourFriendsFromDatabase);
+
 		const settingsYourProfile = document.querySelector('#settings-your-profile-page');
 		settingsYourProfile.addEventListener('click', html.yourProfilePage);
 
@@ -575,6 +578,9 @@ class HTML {
 		html.settingsTemplate();
 	}
 
+	yourFriendsPage(user) {
+		const main = document.querySelector("#app-main");
+	}
 
 	editAccountsPageTemplate() {
 		const main = document.querySelector("#app-main");

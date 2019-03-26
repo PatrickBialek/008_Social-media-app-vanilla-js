@@ -252,6 +252,21 @@ class CORE {
 		});
 	}
 
+	getYourFriendsFromDatabase() {
+		const usersRef = firebase.database().ref("users/"),
+			currentUser = firebase.database().currentUser,
+			currentUserEmail = currentUser.email;
+
+		usersRef.on("child_added", data => {
+			const user = data.val();
+
+			if (currentUserEmail != user.userEmail) {
+
+			}
+
+		});
+	}
+
 	// Posts functions
 	addPostToDatabase() {
 		const postText = document.querySelector("#add-post-textarea").value;
