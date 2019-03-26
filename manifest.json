@@ -30,6 +30,6 @@
 	"start_url": "/008_PWA-social-media-app/",
 	"background_color": "#ff5e3a",
 	"display": "standalone",
-	"scope": "",
+	"scope": "/008_PWA-social-media-app/",
 	"theme_color": "#ff5e3a"
 }
