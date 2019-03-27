@@ -456,7 +456,7 @@ class HTML {
 				<a href="#" id="settings-your-profile-page"><span class="settings__option">Your Profile</span></a>
 			</div>
 			<div class="settings__row">
-				<a href="#" id="settings-your-fiends-page"><span class="settings__option">Your Fiends</span></a>
+				<a href="#" id="settings-all-users-page"><span class="settings__option">All users</span></a>
 			</div>
 			<div class="settings__row">
 				<a href="#" id="edit-account-page"><span class="settings__option">Account Setting</span></a>
@@ -474,7 +474,7 @@ class HTML {
 		const settingsHomePage = document.querySelector('#settings-home-page');
 		settingsHomePage.addEventListener('click', html.mainPageTemplate);
 
-		const settingsYourFriends = document.querySelector('#settings-your-fiends-page');
+		const settingsYourFriends = document.querySelector('#settings-all-users-page');
 		settingsYourFriends.addEventListener('click', html.allUsersPageTemplate);
 
 		const settingsYourProfile = document.querySelector('#settings-your-profile-page');
