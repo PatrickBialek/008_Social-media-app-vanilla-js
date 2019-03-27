@@ -252,16 +252,18 @@ class CORE {
 		});
 	}
 
-	getYourFriendsFromDatabase() {
+	getAllUsersFromDatabase() {
 		const usersRef = firebase.database().ref("users/"),
-			currentUser = firebase.database().currentUser,
+			currentUser = firebase.auth().currentUser,
 			currentUserEmail = currentUser.email;
+
+		html.cleanUsersPreloadContainer();
 
 		usersRef.on("child_added", data => {
 			const user = data.val();
 
 			if (currentUserEmail != user.userEmail) {
-
+				html.singleUserTemplate(user);
 			}
 
 		});
@@ -421,6 +423,32 @@ class CORE {
 		});
 	}
 
+	chooseUserFromUsersList(e) {
+		const userContanier = e.target.closest(".users__single-user"),
+			userEmail = userContanier.id,
+			usersRef = firebase.database().ref("users/"),
+			currentUser = firebase.auth().currentUser;
+
+		let currentUserEmail = currentUser.email;
+
+		// Convert current user to firebase friendly format
+		currentUserEmail = currentUserEmail.replace(/\./g, "-");
+		currentUserEmail = currentUserEmail.replace(/@/g, "+");
+
+
+		usersRef.on("child_added", data => {
+			const user = data.val();
+
+			if (userEmail === currentUserEmail) {
+				html.yourProfilePage();
+			} else if (userEmail === user.userEmail) {
+				html.userProfilPage(user);
+				core.getChosenUserPostsFromDatabase(user, userEmail);
+				html.profileIntroTemplete(user);
+			}
+		})
+	}
+
 	findAuthorProfile(e) {
 		const postTemplateHTML = e.target.closest(".posts__single-post"),
 			id = Number(postTemplateHTML.id);
@@ -438,7 +466,7 @@ class CORE {
 				authorPostEmail = authorPostEmail.replace(/\./g, "-");
 				authorPostEmail = authorPostEmail.replace(/@/g, "+");
 
-				// Convert current user mail to email format
+				// Convert current user to firebase friendly format
 				currentUserEmail = currentUserEmail.replace(/\./g, "-");
 				currentUserEmail = currentUserEmail.replace(/@/g, "+");
 

@@ -270,6 +270,35 @@ class HTML {
 		postsPeloadContainer.innerHTML = templateHTML;
 	}
 
+	usersPreload() {
+		const usersPreloadContainer = document.querySelector('#users-preload-contanier');
+		usersPreloadContainer.innerHTML = "";
+
+		const templateHTML = `
+			<div class="users__single-user users__single-user--preload">
+				<div class="users__avatar users__avatar--preload">
+					<img src="src/images/user-icon.png" alt="author">
+				</div>
+				<div class="users__basic-info users__basic-info--preload">
+					<h2></h2>
+					<p></p>
+				</div>
+			</div>
+
+			<div class="users__single-user users__single-user--preload">
+				<div class="users__avatar users__avatar--preload">
+					<img src="src/images/user-icon.png" alt="author">
+				</div>
+				<div class="users__basic-info users__basic-info--preload">
+					<h2></h2>
+					<p></p>
+				</div>
+			</div>
+		`;
+
+		usersPreloadContainer.innerHTML = templateHTML;
+	}
+
 	// Pages elements tempalates
 	headerTemplete(userName) {
 		const header = document.querySelector("#app-header");
@@ -446,7 +475,7 @@ class HTML {
 		settingsHomePage.addEventListener('click', html.mainPageTemplate);
 
 		const settingsYourFriends = document.querySelector('#settings-your-fiends-page');
-		settingsYourFriends.addEventListener('click', core.getYourFriendsFromDatabase);
+		settingsYourFriends.addEventListener('click', html.allUsersPageTemplate);
 
 		const settingsYourProfile = document.querySelector('#settings-your-profile-page');
 		settingsYourProfile.addEventListener('click', html.yourProfilePage);
@@ -523,7 +552,11 @@ class HTML {
 
 	cleanPostPreloadContainer() {
 		const preloadContainer = document.querySelector('#posts-preload-contanier');
-		console.log(preloadContainer);
+		preloadContainer.innerHTML = "";
+	}
+
+	cleanUsersPreloadContainer() {
+		const preloadContainer = document.querySelector('#users-preload-contanier');
 		preloadContainer.innerHTML = "";
 	}
 
@@ -546,13 +579,59 @@ class HTML {
 
 		// Add preloaded content for better UI/UX 
 		html.profileIntroPreload();
-		html.postPreload();
+		//html.postsPreload();
 
 		// Get and set proper content
 		core.getCurrentUserProfilIntro();
 		html.addPostTemplate();
 		html.settingsTemplate();
 		core.getYourPostsFromDatabase();
+	}
+
+	allUsersPageTemplate() {
+		const main = document.querySelector("#app-main");
+		main.innerHTML = `
+			<aside class="profile-intro" id="aside-profile-intro"></aside>
+
+			<div class="users" id="users-section">
+				<section class="users__container" id="users-preload-contanier"></section>
+				<section class="users__container" id="users-container"></section>
+			</div>
+
+			<aside class="settings" id="profile-settings"></aside>
+		`;
+
+		// Add preloaded content for better UI/UX 
+		html.profileIntroPreload();
+		html.usersPreload();
+
+		// Get and set proper content
+		html.settingsTemplate();
+		core.getCurrentUserProfilIntro();
+		core.getAllUsersFromDatabase();
+	}
+
+	singleUserTemplate(user) {
+		const usersContainer = document.querySelector('#users-container');
+		const templateHTML = `
+			<div class="users__single-user" id="${user.userEmail}">
+				<div class="users__avatar">
+					<img src="src/images/user-icon.png" alt="author">
+				</div>
+				<div class="users__basic-info users__basic-info--preload">
+					<h2>${user.userName}</h2>
+					<p>${user.userAbout}</p>
+				</div>
+			</div>
+		`;
+
+		usersContainer.innerHTML += templateHTML;
+
+		const authorsAvatars = Array.from(document.querySelectorAll('.users__avatar'));
+		authorsAvatars.forEach(authorsAvatar => authorsAvatar.addEventListener('click', core.chooseUserFromUsersList));
+
+		const authorsNames = Array.from(document.querySelectorAll('.users__basic-info h2'));
+		authorsNames.forEach(authorName => authorName.addEventListener('click', core.chooseUserFromUsersList));
 	}
 
 	userProfilPage(user) {

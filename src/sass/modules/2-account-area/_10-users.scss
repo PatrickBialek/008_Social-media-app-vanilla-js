@@ -1,0 +1,90 @@
+.users {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 2;
+	max-width: 650px;
+	margin: 0 25px;
+
+	&__container {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+
+	&__single-user {
+		border: 1px solid $border-color;
+		background-color: $white;
+		padding: 2.5rem;
+		border-radius: 5px;
+		margin-bottom: 2rem;
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	&__avatar {
+		&--preload {
+			background-color: $preloaded-content;
+			border-radius: 50%;
+			height: 80px;
+			width: 80px;
+			margin-right: 20px;
+
+			& img {
+				display: none !important;
+			}
+		}
+
+		& img {
+			height: 60px;
+			cursor: pointer;
+			border-radius: 50%;
+			display: block;
+			margin-right: 15px;
+		}
+	}
+
+	&__basic-info {
+		display: flex;
+		width: 80%;
+		box-sizing: border-box;
+		flex-direction: column;
+		justify-content: center;
+
+		&--preload {
+			& h2:empty:after {
+				content: "";
+				display: block;
+				height: 1rem;
+				background-color: $preloaded-content;
+				border-radius: 1rem;
+				width: 50%;
+				margin-bottom: 2rem;
+			}
+
+			& p:empty:before,
+			& p:empty:after {
+				content: "";
+				display: block;
+				height: 1rem;
+				background-color: $preloaded-content;
+				border-radius: 1rem;
+				width: 100%;
+			}
+
+			& p:empty:before {
+				margin-bottom: 1rem;
+			}
+
+			& p:empty:after {
+				margin-bottom: 0rem;
+			}
+		}
+
+		& h2 {
+			margin-bottom: 0;
+			color: $black;
+			font-weight: 700;
+			cursor: pointer;
+		}
+	}
+}
