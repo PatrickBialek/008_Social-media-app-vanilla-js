@@ -19,9 +19,15 @@ if ('serviceWorker' in navigator) {
 	navigator.serviceWorker
 		.register('/sw/sw.js')
 		.then(() => {
-			console.log('sw is registered');
+			console.log('SW registered');
 		})
 }
+
+window.addEventListener('beforeinstallprompt', (e) => {
+	e.preventDefault();
+
+	deferredPrompt = e;
+});
 
 export {
 	html,
