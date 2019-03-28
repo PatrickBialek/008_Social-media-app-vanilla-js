@@ -17,7 +17,7 @@ core.checkIfUserIsLogIn();
 
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker
-		.register('/service-worker/sw.js')
+		.register('../../sw/sw.js')
 		.then(() => {
 			console.log('sw is registered');
 		})
