@@ -17,7 +17,7 @@ core.checkIfUserIsLogIn();
 
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker
-		.register('/sw/sw.js')
+		.register('/008_PWA-social-media-app/sw/sw.js')
 		.then(() => {
 			console.log('SW registered');
 		})
