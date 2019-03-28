@@ -15,6 +15,14 @@ const html = new HTML(),
 core.initializeFirebase();
 core.checkIfUserIsLogIn();
 
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker
+		.register('/service-worker/sw.js')
+		.then(() => {
+			console.log('sw is registered');
+		})
+}
+
 export {
 	html,
 	core,
