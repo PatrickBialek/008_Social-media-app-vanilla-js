@@ -1,6 +1,10 @@
-import { HTML } from "./modules/html";
+import {
+	HTML
+} from "./modules/html";
 
-import { CORE } from "./modules/core";
+import {
+	CORE
+} from "./modules/core";
 
 const html = new HTML(),
 	core = new CORE(),
@@ -18,9 +22,14 @@ if ("serviceWorker" in navigator) {
 }
 
 window.addEventListener("beforeinstallprompt", e => {
+	console.log('installprompt has been stopted');
 	e.preventDefault();
 
-	deferredPrompt = e;
+	//deferredPrompt = e;
 });
 
-export { html, core, appBody };
+export {
+	html,
+	core,
+	appBody
+};
