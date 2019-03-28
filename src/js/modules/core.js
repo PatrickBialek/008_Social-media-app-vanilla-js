@@ -93,6 +93,22 @@ class CORE {
 			setTimeout(() => {
 				core.createUserDatabase();
 			}, 2000);
+
+			if (deferredPrompt) {
+				deferredPrompt.prompt();
+
+				deferredPrompt.userChoice.then(function (choiceResult) {
+					console.log(userResult.outcome);
+
+					if (choiceResult.outcome === 'dismissed') {
+						console.log('User cancelled installation');
+					} else {
+						console.log('User added  to home screen');
+					}
+
+					deferredPrompt = null;
+				});
+			}
 		} else {
 			const error = "You have to fill all fields";
 			html.displayError(error);
