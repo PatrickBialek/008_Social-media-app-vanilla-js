@@ -6,6 +6,10 @@
 	box-sizing: border-box;
 	z-index: 50;
 	position: fixed;
+
+	@include smallScreen {
+		padding: 1.5rem 2rem;
+	}
 }
 
 .header {
@@ -18,6 +22,10 @@
 		justify-content: space-between;
 		align-items: center;
 		max-width: 1200px;
+
+		@include smallScreen {
+			max-width: 600px;
+		}
 	}
 
 	&.nav-active &__nav-box {
@@ -27,6 +35,7 @@
 	&__logo-box {
 		& img {
 			width: 30px;
+			cursor: pointer;
 		}
 	}
 

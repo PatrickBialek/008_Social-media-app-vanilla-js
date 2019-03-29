@@ -230,6 +230,9 @@ body.add-error .error-box {
   box-sizing: border-box;
   z-index: 50;
   position: fixed; }
+  @media (max-width: 950px) {
+    .header#app-header {
+      padding: 1.5rem 2rem; } }
 
 .header__container {
   display: flex;
@@ -240,12 +243,16 @@ body.add-error .error-box {
   justify-content: space-between;
   align-items: center;
   max-width: 1200px; }
+  @media (max-width: 950px) {
+    .header__container {
+      max-width: 600px; } }
 
 .header.nav-active .header__nav-box {
   transform: translateX(0); }
 
 .header__logo-box img {
-  width: 30px; }
+  width: 30px;
+  cursor: pointer; }
 
 .header__search-box {
   position: relative; }
@@ -709,13 +716,13 @@ body.add-error .error-box {
   flex-direction: column;
   flex-grow: 2;
   max-width: 650px;
-  margin: 0 25px;
-  order: 3; }
+  margin: 0 25px; }
   @media (max-width: 950px) {
     .users {
       margin: 2rem auto;
       width: 90%;
-      max-width: 600px; } }
+      max-width: 600px;
+      order: 3; } }
   .users__container {
     display: flex;
     flex-direction: column-reverse; }
