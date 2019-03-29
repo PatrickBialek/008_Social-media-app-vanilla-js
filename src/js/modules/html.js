@@ -328,7 +328,7 @@ class HTML {
 		const avatar = document.querySelector("#header-user-avatar");
 		avatar.addEventListener("click", html.yourProfilePage);
 
-		const logo = document.querySelector('#app-header > header__container > class="header__logo-box" > img');
+		const logo = document.querySelector('#app-header .header__logo-box > img');
 		logo.addEventListener("click", html.mainPageTemplate);
 	}
 

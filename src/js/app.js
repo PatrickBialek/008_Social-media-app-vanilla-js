@@ -1,9 +1,13 @@
-import { HTML } from "./modules/html";
+import {
+	HTML
+} from "./modules/html";
 
-import { CORE } from "./modules/core";
+import {
+	CORE
+} from "./modules/core";
 
 const GTIHUB_APP_LOCATION = "/008_PWA-social-media-app/";
-const LOCAL_APP_LOCATION = "";
+// const LOCAL_APP_LOCATION = "";
 
 const html = new HTML(),
 	core = new CORE(),
@@ -27,4 +31,8 @@ window.addEventListener("beforeinstallprompt", e => {
 	//deferredPrompt = e;
 });
 
-export { html, core, appBody };
+export {
+	html,
+	core,
+	appBody
+};
