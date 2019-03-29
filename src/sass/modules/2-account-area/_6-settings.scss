@@ -5,6 +5,13 @@
 	border-radius: 5px;
 	background-color: $white;
 
+	@include smallScreen {
+		width: 90%;
+		max-width: 600px;
+		margin: 0 auto 0rem;
+		order: 2;
+	}
+
 	&,
 	&__row {
 		display: flex;

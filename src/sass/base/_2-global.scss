@@ -19,4 +19,8 @@ body {
 	font-size: 1.5rem;
 	align-items: start;
 	padding-top: 110px;
+
+	@include smallScreen {
+		flex-direction: column;
+	}
 }

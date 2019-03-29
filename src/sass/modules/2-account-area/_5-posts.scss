@@ -5,6 +5,18 @@
 	max-width: 650px;
 	margin: 0 25px;
 
+	@include mediumScreen {
+		max-width: 450px;
+		margin: 0 15px;
+	}
+
+	@include smallScreen {
+		width: 90%;
+		max-width: 600px;
+		margin: 2rem auto 0rem;
+		order: 3;
+	}
+
 	&__titile {
 		margin-bottom: 1rem;
 

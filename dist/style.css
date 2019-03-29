@@ -140,6 +140,9 @@ body {
   font-size: 1.5rem;
   align-items: start;
   padding-top: 110px; }
+  @media (max-width: 950px) {
+    #app-main {
+      flex-direction: column; } }
 
 .margin-bottom-small {
   margin-bottom: 1rem; }
@@ -421,6 +424,16 @@ body.add-error .error-box {
   flex-grow: 2;
   max-width: 650px;
   margin: 0 25px; }
+  @media (max-width: 1050px) {
+    .posts {
+      max-width: 450px;
+      margin: 0 15px; } }
+  @media (max-width: 950px) {
+    .posts {
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto 0rem;
+      order: 3; } }
   .posts__titile {
     margin-bottom: 1rem; }
     .posts__titile h2 {
@@ -532,6 +545,12 @@ body.add-error .error-box {
   border: 1px solid #e6ecf5;
   border-radius: 5px;
   background-color: #fff; }
+  @media (max-width: 950px) {
+    .settings {
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto 0rem;
+      order: 2; } }
   .settings, .settings__row {
     display: flex;
     flex-direction: column;
@@ -596,6 +615,11 @@ body.add-error .error-box {
   background-color: #fff;
   border: 1px solid #e6ecf5;
   border-radius: 5px; }
+  @media (max-width: 950px) {
+    .profile-intro {
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto 2rem; } }
   .profile-intro, .profile-intro__row {
     display: flex;
     flex-direction: column;
@@ -633,6 +657,12 @@ body.add-error .error-box {
   border: 1px solid #e6ecf5;
   border-radius: 5px;
   margin: 0 2.5rem; }
+  @media (max-width: 950px) {
+    .edit-account {
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto 0rem;
+      order: 3; } }
   .edit-account__row {
     padding: 20px 25px 20px;
     border-bottom: 1px solid #e6ecf5;
@@ -668,7 +698,13 @@ body.add-error .error-box {
   flex-direction: column;
   flex-grow: 2;
   max-width: 650px;
-  margin: 0 25px; }
+  margin: 0 25px;
+  order: 3; }
+  @media (max-width: 950px) {
+    .users {
+      margin: 2rem auto;
+      width: 90%;
+      max-width: 600px; } }
   .users__container {
     display: flex;
     flex-direction: column-reverse; }
