@@ -32,6 +32,10 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		@include smallScreen {
+			flex-direction: column;
+		}
 	}
 
 	&__content-box {
@@ -44,6 +48,11 @@
 		padding: 2rem 5rem 2rem 0rem;
 		color: $white;
 		opacity: .9;
+
+		@include smallScreen {
+			padding: 2rem;
+			text-align: center;
+		}
 	}
 
 	&__user-asction-box {
@@ -51,5 +60,10 @@
 		background-color: $white;
 		border-radius: 8px;
 		padding: 2rem 2.5rem;
+
+		@include smallScreen {
+			width: 80%;
+			max-width: 400px;
+		}
 	}
 }

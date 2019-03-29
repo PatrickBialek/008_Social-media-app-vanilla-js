@@ -358,6 +358,9 @@ body.add-error .error-box {
     display: flex;
     justify-content: center;
     align-items: center; }
+    @media (max-width: 950px) {
+      .authorization, .authorization__content-box {
+        flex-direction: column; } }
   .authorization__content-box {
     max-width: 1400px;
     position: relative; }
@@ -366,11 +369,19 @@ body.add-error .error-box {
     padding: 2rem 5rem 2rem 0rem;
     color: #fff;
     opacity: .9; }
+    @media (max-width: 950px) {
+      .authorization__text-box {
+        padding: 2rem;
+        text-align: center; } }
   .authorization__user-asction-box {
     width: 350px;
     background-color: #fff;
     border-radius: 8px;
     padding: 2rem 2.5rem; }
+    @media (max-width: 950px) {
+      .authorization__user-asction-box {
+        width: 80%;
+        max-width: 400px; } }
 
 .sing-in__row {
   display: flex;

@@ -13,12 +13,3 @@
 }
 
 ;
-
-
-@mixin tinyScreen {
-	@media (max-width: 550px) {
-		@content
-	}
-}
-
-;
