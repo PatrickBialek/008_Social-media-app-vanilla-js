@@ -337,6 +337,7 @@ class HTML {
 		const templateHTML = `
 			<div class="profile-intro__row">
 				<h2>Profil intro</h2>
+				<img src="src/images/angle-arrow-down.png" id="profile-intro-slide-control">
 			</div>
 			<div class="profile-intro__row">
 				<span class="profile-intro__sub-titile">About me:</span>
@@ -451,6 +452,7 @@ class HTML {
 		const templateHTML = `
 			<div class="settings__row">
 				<h2>Settings</h2>
+				<img src="src/images/angle-arrow-down.png" id="settings-slide-control">
 			</div>
 			<div class="settings__row">
 				<a href="#" id="settings-home-page"><span class="settings__option">Home Page</span></a>

@@ -24,6 +24,30 @@
 		border-bottom: 1px solid $border-color;
 		transition: background-color 0.3s ease-in-out;
 
+		&:not(:first-child):not(:last-child) {
+			@include smallScreen {
+				display: none;
+			}
+		}
+
+		&:first-child {
+			position: relative;
+			display: flex;
+			justify-content: center;
+
+			& img {
+				display: none;
+
+				@include smallScreen {
+					width: 12px;
+					position: absolute;
+					right: 15px;
+					cursor: pointer;
+					display: block;
+				}
+			}
+		}
+
 		&:first-child,
 		&:last-child {
 			padding: 20px 25px 20px;

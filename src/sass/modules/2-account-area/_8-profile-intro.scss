@@ -23,6 +23,30 @@
 		padding: 20px 25px 20px;
 		border-bottom: 1px solid $border-color;
 
+		&:not(:first-child) {
+			@include smallScreen {
+				display: none;
+			}
+		}
+
+		&:first-child {
+			position: relative;
+			display: flex;
+			justify-content: center;
+
+			& img {
+				display: none;
+
+				@include smallScreen {
+					width: 12px;
+					position: absolute;
+					right: 15px;
+					cursor: pointer;
+					display: block;
+				}
+			}
+		}
+
 		&--preload {
 
 			h2:empty:after,

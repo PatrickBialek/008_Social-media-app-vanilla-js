@@ -8,7 +8,7 @@
 	position: fixed;
 
 	@include smallScreen {
-		padding: 1.5rem 2rem;
+		padding: 1.5rem 1rem;
 	}
 }
 
@@ -37,6 +37,9 @@
 	}
 
 	&__logo-box {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
 		& img {
 			width: 30px;
