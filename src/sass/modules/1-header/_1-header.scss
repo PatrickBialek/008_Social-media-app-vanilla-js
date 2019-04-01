@@ -25,11 +25,10 @@
 
 		@include smallScreen {
 			max-width: 600px;
-			padding-top: 3rem;
 		}
 
 		@include tinyScreen {
-			flex-direction: column;
+			max-width: none;
 		}
 	}
 
@@ -38,12 +37,6 @@
 	}
 
 	&__logo-box {
-
-		@include tinyScreen {
-			position: absolute;
-			top: 7px;
-			left: 35px;
-		}
 
 		& img {
 			width: 30px;
@@ -65,6 +58,10 @@
 			background-color: $header-input-bg;
 			width: 300px;
 
+			@include tinyScreen {
+				width: auto;
+			}
+
 			&::placeholder {
 				font-size: 1.45rem;
 				color: $white;
@@ -81,12 +78,9 @@
 	}
 
 	&__user-picture-box {
-
-		@include tinyScreen {
-			position: absolute;
-			top: 7px;
-			right: 35px;
-		}
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
 		& img {
 			width: 40px;

@@ -495,9 +495,12 @@ class HTML {
 				<h2>Edit your account</h2>
 			</div>
 			<div class="edit-account__row">
-				<input type="text" id="edit-account-user-name" value="${user.userName}"> 
+				<input type="text" id="edit-account-user-name" value="${user.userName}">
+				<label for=""></label>
 				<textarea class="margin-top-small" id="edit-account-change-about-me">${user.userAbout}</textarea>
+				<label for=""></label>
 				<textarea class="margin-top-small" id="edit-account-visited-places">${user.userVisitedPlaces}</textarea>
+				<label for=""></label>
 				<textarea class="margin-top-small" id="edit-account-want-to-see">${user.userWantToVist}</textarea>
 			</div>
 			<div class="edit-account__row">
