@@ -353,10 +353,8 @@ class CORE {
 				postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 			} else if (difference < 86400000) {
 				postPublishDate = Math.floor(difference / 3600000) + " hours ago";
-			} else if (difference > 86400000 && difference < 604800000) {
+			} else if (difference > 86400000) {
 				postPublishDate = Math.floor(difference / 86400000) + " days ago";
-			} else {
-				postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 			}
 
 			html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
@@ -389,10 +387,8 @@ class CORE {
 						postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 					} else if (difference < 86400000) {
 						postPublishDate = Math.floor(difference / 3600000) + " hours ago";
-					} else if (difference > 86400000 && difference < 604800000) {
+					} else if (difference > 86400000) {
 						postPublishDate = Math.floor(difference / 86400000) + " days ago";
-					} else {
-						postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 					}
 
 					html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);
@@ -428,10 +424,8 @@ class CORE {
 					postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 				} else if (difference < 86400000) {
 					postPublishDate = Math.floor(difference / 3600000) + " hours ago";
-				} else if (difference > 86400000 && difference < 604800000) {
+				} else if (difference > 86400000) {
 					postPublishDate = Math.floor(difference / 86400000) + " days ago";
-				} else {
-					postPublishDate = Math.floor(difference / 60000) + " minutes ago";
 				}
 
 				html.singlePostTemplate(userPostsContainer, post, postPublishDate, removePostBtnTemplate);

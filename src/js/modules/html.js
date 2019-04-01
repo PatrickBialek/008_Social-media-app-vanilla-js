@@ -495,13 +495,14 @@ class HTML {
 				<h2>Edit your account</h2>
 			</div>
 			<div class="edit-account__row">
+			<label class="margin-top-small" for="edit-account-user-name">Your name:</label>
 				<input type="text" id="edit-account-user-name" value="${user.userName}">
-				<label for=""></label>
-				<textarea class="margin-top-small" id="edit-account-change-about-me">${user.userAbout}</textarea>
-				<label for=""></label>
-				<textarea class="margin-top-small" id="edit-account-visited-places">${user.userVisitedPlaces}</textarea>
-				<label for=""></label>
-				<textarea class="margin-top-small" id="edit-account-want-to-see">${user.userWantToVist}</textarea>
+				<label class="margin-top-small" for="edit-account-change-about-me">About you:</label>
+				<textarea id="edit-account-change-about-me">${user.userAbout}</textarea>
+				<label class="margin-top-small" for="edit-account-visited-places">Visited places:</label>
+				<textarea id="edit-account-visited-places">${user.userVisitedPlaces}</textarea>
+				<label class="margin-top-small" for="edit-account-want-to-see">Want to visit:</label>
+				<textarea id="edit-account-want-to-see">${user.userWantToVist}</textarea>
 			</div>
 			<div class="edit-account__row">
 				<input class="btn btn--orange margin-top-small" type="submit" id="save-account-changes-btn" value="Save Changes">
