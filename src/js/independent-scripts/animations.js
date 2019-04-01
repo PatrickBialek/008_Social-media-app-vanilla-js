@@ -39,4 +39,4 @@ setTimeout(() => {
 	introSildeDownArrow.addEventListener('click', introHandler);
 	settingsSlideDownArrow.addEventListener('click', settingsHandler);
 
-}, 2500);
+}, 3500);
