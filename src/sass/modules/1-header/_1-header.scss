@@ -25,6 +25,11 @@
 
 		@include smallScreen {
 			max-width: 600px;
+			padding-top: 3rem;
+		}
+
+		@include tinyScreen {
+			flex-direction: column;
 		}
 	}
 
@@ -33,6 +38,13 @@
 	}
 
 	&__logo-box {
+
+		@include tinyScreen {
+			position: absolute;
+			top: 7px;
+			left: 35px;
+		}
+
 		& img {
 			width: 30px;
 			cursor: pointer;
@@ -69,6 +81,13 @@
 	}
 
 	&__user-picture-box {
+
+		@include tinyScreen {
+			position: absolute;
+			top: 7px;
+			right: 35px;
+		}
+
 		& img {
 			width: 40px;
 			cursor: pointer;

@@ -245,10 +245,20 @@ body.add-error .error-box {
   max-width: 1200px; }
   @media (max-width: 950px) {
     .header__container {
-      max-width: 600px; } }
+      max-width: 600px;
+      padding-top: 3rem; } }
+  @media (max-width: 500px) {
+    .header__container {
+      flex-direction: column; } }
 
 .header.nav-active .header__nav-box {
   transform: translateX(0); }
+
+@media (max-width: 500px) {
+  .header__logo-box {
+    position: absolute;
+    top: 7px;
+    left: 35px; } }
 
 .header__logo-box img {
   width: 30px;
@@ -275,6 +285,12 @@ body.add-error .error-box {
   position: absolute;
   top: 6px;
   right: 7px; }
+
+@media (max-width: 500px) {
+  .header__user-picture-box {
+    position: absolute;
+    top: 7px;
+    right: 35px; } }
 
 .header__user-picture-box img {
   width: 40px;
