@@ -87,3 +87,7 @@
 		text-align: center;
 	}
 }
+
+body.settings-slide-down .settings__row:not(:first-child) {
+	display: flex !important;
+}

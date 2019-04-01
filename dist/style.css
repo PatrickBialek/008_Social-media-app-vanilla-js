@@ -631,6 +631,9 @@ body.add-error .error-box {
     margin-bottom: 0;
     text-align: center; }
 
+body.settings-slide-down .settings__row:not(:first-child) {
+  display: flex !important; }
+
 .add-post {
   width: 100%;
   box-sizing: border-box;
@@ -687,7 +690,7 @@ body.add-error .error-box {
         display: none; }
         @media (max-width: 950px) {
           .profile-intro__row:first-child img {
-            width: 12px;
+            width: 15px;
             position: absolute;
             right: 15px;
             cursor: pointer;
@@ -710,6 +713,9 @@ body.add-error .error-box {
   .profile-intro__sub-titile {
     font-weight: 500;
     color: #515365; }
+
+body.intro-slide-down .profile-intro__row:not(:first-child) {
+  display: block !important; }
 
 .edit-account {
   display: flex;
