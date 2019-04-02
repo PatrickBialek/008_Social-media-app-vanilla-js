@@ -762,6 +762,10 @@ body.intro-slide-down .profile-intro__row:not(:first-child) {
     outline: none;
     border: 1px solid #e6ecf5;
     color: #515365; }
+  .edit-account__upload {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem; }
 
 .users {
   display: flex;

@@ -54,4 +54,10 @@
 		border: 1px solid $border-color;
 		color: $black;
 	}
+
+	&__upload {
+		display: flex;
+		flex-direction: column;
+		margin-top: 2rem;
+	}
 }

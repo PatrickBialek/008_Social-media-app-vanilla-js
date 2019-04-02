@@ -538,6 +538,10 @@ class CORE {
 			alert("You cannot leave empty field!");
 		}
 	}
+
+	uploadImageToDatabase() {
+
+	}
 }
 
 export {
