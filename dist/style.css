@@ -573,6 +573,7 @@ body.add-error .error-box {
 
 .settings {
   flex-grow: 1;
+  min-width: 230px;
   max-width: 250px;
   border: 1px solid #e6ecf5;
   border-radius: 5px;
@@ -662,6 +663,7 @@ body.settings-slide-down .settings__row:not(:first-child) {
 
 .profile-intro {
   flex-grow: 1;
+  min-width: 230px;
   max-width: 250px;
   background-color: #fff;
   border: 1px solid #e6ecf5;
