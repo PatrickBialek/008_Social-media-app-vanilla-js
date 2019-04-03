@@ -508,7 +508,6 @@ class HTML {
 				<div class="edit-account__upload">
 					<label for="upload-profil-image"></label>
 					<input type="file" id="upload-user-avatar" accept="image/x-png, image/gif, image/jpeg">
-					<input class="btn btn--orange margin-top-small" type="submit" id="upload-profil-image-btn" value="Upload Avatar">
 				</div>
 			</div>
 			<div class="edit-account__row">
@@ -518,8 +517,8 @@ class HTML {
 
 		settingsTemplate.innerHTML = templateHTML;
 
-		const uploadImageBtn = document.querySelector('#upload-profil-image-btn');
-		uploadImageBtn.addEventListener("click", core.uploadImageToDatabase);
+		const uploadImageBtn = document.querySelector('#upload-user-avatar');
+		uploadImageBtn.addEventListener("change", core.uploadImageToDatabase);
 
 		const saveUserSettingsChangesBtn = document.querySelector('#save-account-changes-btn');
 		saveUserSettingsChangesBtn.addEventListener('click', core.changeUserSettingsInDatabase);

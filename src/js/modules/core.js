@@ -1,15 +1,10 @@
 // This import loads the firebase namespace.
-import firebase, {
-	auth
-} from "firebase/app";
+import firebase, { auth } from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import "firebase/storage";
 
-import {
-	core,
-	html,
-	appBody
-} from "../app";
+import { core, html, appBody } from "../app";
 
 class CORE {
 	initializeFirebase() {
@@ -97,13 +92,13 @@ class CORE {
 			if (deferredPrompt) {
 				deferredPrompt.prompt();
 
-				deferredPrompt.userChoice.then(function (choiceResult) {
+				deferredPrompt.userChoice.then(function(choiceResult) {
 					console.log(userResult.outcome);
 
-					if (choiceResult.outcome === 'dismissed') {
-						console.log('User cancelled installation');
+					if (choiceResult.outcome === "dismissed") {
+						console.log("User cancelled installation");
 					} else {
-						console.log('User added  to home screen');
+						console.log("User added  to home screen");
 					}
 
 					deferredPrompt = null;
@@ -281,7 +276,6 @@ class CORE {
 			if (currentUserEmail != user.userEmail) {
 				html.singleUserTemplate(user);
 			}
-
 		});
 	}
 
@@ -445,7 +439,6 @@ class CORE {
 		currentUserEmail = currentUserEmail.replace(/\./g, "-");
 		currentUserEmail = currentUserEmail.replace(/@/g, "+");
 
-
 		usersRef.on("child_added", data => {
 			const user = data.val();
 
@@ -456,7 +449,7 @@ class CORE {
 				core.getChosenUserPostsFromDatabase(user, userEmail);
 				html.profileIntroTemplete(user);
 			}
-		})
+		});
 	}
 
 	findAuthorProfile(e) {
@@ -467,7 +460,7 @@ class CORE {
 			.database()
 			.ref("posts/" + id)
 			.once("value")
-			.then(function (snapshot) {
+			.then(function(snapshot) {
 				const currentUser = firebase.auth().currentUser;
 				let authorPostEmail = snapshot.child("/userEmail").val(),
 					currentUserEmail = currentUser.email;
@@ -540,10 +533,15 @@ class CORE {
 	}
 
 	uploadImageToDatabase() {
+		let file = event.target.files[0];
 
+		const user = firebase.auth().currentUser,
+			uid = user.uid,
+			storageRef = firebase.storage().ref(`user-profile-photos/${uid}`);
+
+		storageRef.put(file);
+		alert("Photo has been added successfully! Save changes.");
 	}
 }
 
-export {
-	CORE
-};
+export { CORE };
