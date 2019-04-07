@@ -24,7 +24,9 @@ class CORE {
 	checkIfUserIsLogIn() {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
-				const userName = user.displayName;
+				const userName = user.displayName,
+					uid = user.uid;
+
 				html.userSingedInTemplete(userName);
 				html.mainPageTemplate();
 			} else {
@@ -532,6 +534,8 @@ class CORE {
 		}
 	}
 
+	addImageToUser() {}
+
 	uploadImageToDatabase() {
 		let file = event.target.files[0];
 
@@ -539,9 +543,18 @@ class CORE {
 			uid = user.uid,
 			storageRef = firebase.storage().ref(`user-profile-photos/${uid}`);
 
-		storageRef.put(file);
-		alert("Photo has been added successfully! Save changes.");
+		storageRef.put(file).then(snapshot => {
+			snapshot.ref.getDownloadURL().then(url => {
+				firebase
+					.auth()
+					.currentUser.updateProfile({
+						photoURL: url
+					})
+					.catch(error => {
+						console.log(`Failed to upload file and get link - ${error}`);
+					});
+			});
+		});
 	}
 }
-
 export { CORE };
