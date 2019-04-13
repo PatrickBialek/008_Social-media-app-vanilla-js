@@ -310,7 +310,7 @@ class HTML {
 				<img src="src/images/app-icon.png" alt="Social media logo">
 			</div>
 			<div class="header__search-box">
-				<input type="text" placeholder="Find friends..">
+				<input type="text" placeholder="Find friends.." id="find-firends-search-box">
 				<div class="header__magnifier-box">
 					<img src="src/images/search.png" alt="Magnifier">
 				</div>
@@ -394,12 +394,8 @@ class HTML {
 					</div>
 				</div>
 				<p>${post.postText}</p>
-				<hr>
-				<div class="posts__likes">Likes: </div>
 				<div class="posts__control-panel">
 					<div class="remove-btn-post-container">${removePostBtnTemplate}</div>
-					<li class="posts__single-control like-post"><img src="src/images/svg/heart-btn.svg" alt="Heart icon"></li>
-					<li class="posts__single-control comment-like"><img src="src/images/svg/chat-btn.svg" alt="Chat icon"></li>
 				</div>
 			</article>
 		`;

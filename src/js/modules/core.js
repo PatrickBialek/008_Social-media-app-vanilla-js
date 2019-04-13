@@ -1,10 +1,16 @@
 // This import loads the firebase namespace.
-import firebase, { auth } from "firebase/app";
+import firebase, {
+	auth
+} from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/storage";
 
-import { core, html, appBody } from "../app";
+import {
+	core,
+	html,
+	appBody
+} from "../app";
 
 class CORE {
 	initializeFirebase() {
@@ -94,7 +100,7 @@ class CORE {
 			if (deferredPrompt) {
 				deferredPrompt.prompt();
 
-				deferredPrompt.userChoice.then(function(choiceResult) {
+				deferredPrompt.userChoice.then(function (choiceResult) {
 					console.log(userResult.outcome);
 
 					if (choiceResult.outcome === "dismissed") {
@@ -462,7 +468,7 @@ class CORE {
 			.database()
 			.ref("posts/" + id)
 			.once("value")
-			.then(function(snapshot) {
+			.then(function (snapshot) {
 				const currentUser = firebase.auth().currentUser;
 				let authorPostEmail = snapshot.child("/userEmail").val(),
 					currentUserEmail = currentUser.email;
@@ -499,6 +505,10 @@ class CORE {
 
 		post.push(userName);
 		html.likedPostTemplate(postTemplateHTML);
+	}
+
+	searchFiends(e) {
+		console.log(e.target.value)
 	}
 
 	// User setting functions
@@ -557,4 +567,6 @@ class CORE {
 		});
 	}
 }
-export { CORE };
+export {
+	CORE
+};

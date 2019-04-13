@@ -13,7 +13,8 @@ const html = new HTML(),
 	core = new CORE(),
 	switchToSignUp = document.querySelector("#switch-to-sign-up"),
 	switchToSignIn = document.querySelector("#switch-to-sign-in"),
-	appBody = document.querySelector("#app-body");
+	appBody = document.querySelector("#app-body"),
+	searchFriendField = document.querySelector('#find-firends-search-box');
 
 core.initializeFirebase();
 core.checkIfUserIsLogIn();
@@ -25,11 +26,9 @@ if ("serviceWorker" in navigator) {
 }
 
 window.addEventListener("beforeinstallprompt", e => {
-	console.log("installprompt has been stopted");
 	e.preventDefault();
-
-	//deferredPrompt = e;
 });
+
 
 export {
 	html,
